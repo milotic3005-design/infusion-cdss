@@ -2,6 +2,9 @@
   "name": "infusion-cdss",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,12 +12,24 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.91.3",
+    "@xyflow/react": "^12.10.1",
+    "clsx": "^2.1.1",
+    "d3": "^7.9.0",
+    "dagre": "^0.8.5",
+    "dexie": "^4.3.0",
+    "framer-motion": "^12.38.0",
+    "lucide-react": "^0.577.0",
     "next": "16.2.1",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "tailwind-merge": "^3.5.0",
+    "zustand": "^5.0.12"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@types/d3": "^7.4.3",
+    "@types/dagre": "^0.7.54",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
