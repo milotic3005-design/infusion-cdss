@@ -91,12 +91,12 @@ export default function HomePage() {
       {/* Header */}
       <div className="text-center mb-8">
         <div className="inline-flex items-center gap-2 mb-3">
-          <ShieldCheck size={28} className="text-blue-600" />
-          <h1 className="text-2xl md:text-3xl font-bold text-gray-900">
+          <ShieldCheck size={28} className="text-[#4E6F4E]" />
+          <h1 className="text-2xl md:text-3xl font-bold text-[#4E6F4E]">
             Infusion Reaction Decision Support
           </h1>
         </div>
-        <p className="text-gray-500 text-sm max-w-md">
+        <p className="text-[#8AB78A] text-sm max-w-md">
           NCI CTCAE v6.0 grading with real-time clinical decision support
         </p>
       </div>
@@ -138,7 +138,7 @@ export default function HomePage() {
         )}
       </GlassPanel>
 
-      <p className="mt-6 text-xs text-gray-400 text-center max-w-sm">
+      <p className="mt-6 text-xs text-[#8AB78A]/70 text-center max-w-sm">
         Data sourced from RxNorm, openFDA, and DailyMed.
         Always verify with institutional protocols.
       </p>

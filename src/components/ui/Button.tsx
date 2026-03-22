@@ -16,10 +16,10 @@ interface ButtonProps {
 }
 
 const variantStyles = {
-  primary: 'bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800',
-  secondary: 'bg-gray-100 text-gray-900 hover:bg-gray-200 active:bg-gray-300 border border-gray-200',
+  primary: 'bg-[#8AB78A] text-white hover:bg-[#4E6F4E] active:bg-[#3d5a3d]',
+  secondary: 'bg-transparent text-[#4E6F4E] border border-[#8AB78A] hover:bg-[#E9F5E1] active:bg-[#C1E1B1]',
   danger: 'bg-red-600 text-white hover:bg-red-700 active:bg-red-800',
-  ghost: 'bg-transparent text-gray-700 hover:bg-gray-100 active:bg-gray-200',
+  ghost: 'bg-transparent text-[#4E6F4E] hover:bg-[#E9F5E1] active:bg-[#C1E1B1]',
 };
 
 const sizeStyles = {
@@ -44,7 +44,7 @@ export function Button({
       transition={{ duration: 0.1 }}
       className={cn(
         'inline-flex items-center justify-center gap-2 font-semibold transition-colors',
-        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2',
+        'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8AB78A] focus-visible:ring-offset-2',
         'disabled:opacity-50 disabled:cursor-not-allowed',
         variantStyles[variant],
         sizeStyles[size],

@@ -9,9 +9,9 @@ interface GlassPanelProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 const intensityStyles = {
-  light: 'bg-white/60 backdrop-blur-md border-white/30',
-  medium: 'bg-white/75 backdrop-blur-xl border-white/20',
-  heavy: 'bg-white/90 backdrop-blur-2xl border-white/10',
+  light: 'bg-[#E9F5E1]/60 backdrop-blur-md border-[#C1E1B1]/30',
+  medium: 'bg-[#E9F5E1]/75 backdrop-blur-xl border-[#C1E1B1]/20',
+  heavy: 'bg-white/90 backdrop-blur-2xl border-[#C1E1B1]/10',
 };
 
 export function GlassPanel({
