@@ -91,15 +91,10 @@ export function computeGrade(
   // Step 3: Combined grade
   let finalGradeNumber = Math.max(symptomMaxGrade, vitalMaxGrade) as CTCAEGradeNumber;
 
-  // Step 4: Drug-specific overrides (can only escalate)
-  let drugOverrideApplied = false;
-  if (drugOverrides && drugOverrides.firstInfusionRisk === 'elevated' && presentSymptoms.length > 0) {
-    // For elevated first-infusion-risk drugs, escalate Grade 1 to Grade 2 if any symptoms present
-    if (finalGradeNumber === 1) {
-      finalGradeNumber = 2;
-      drugOverrideApplied = true;
-    }
-  }
+  // Step 4: Drug-specific flag (informational only — does not alter CTCAE grade)
+  // The drug's firstInfusionRisk is surfaced in the protocol recommendations,
+  // but the computed grade must reflect actual symptom severity per CTCAE v6.0.
+  const drugOverrideApplied = false;
 
   // Clamp to valid range
   finalGradeNumber = Math.min(Math.max(finalGradeNumber, 1), 5) as CTCAEGradeNumber;
