@@ -1,7 +1,7 @@
 'use client';
 
 import { Card } from '@/components/ui/Card';
-import { Shield, Syringe, Clock, AlertTriangle, Info } from 'lucide-react';
+import { Shield, Syringe, Clock, AlertTriangle, Info, Gauge } from 'lucide-react';
 import type { DrugProtocol } from '@/types/reaction.types';
 
 interface DrugReactionCardProps {
@@ -38,6 +38,29 @@ export function DrugReactionCard({ protocol, drugName }: DrugReactionCardProps) 
               </li>
             ))}
           </ul>
+        </div>
+      )}
+
+      {/* Infusion rates */}
+      {protocol.infusionRates.length > 0 && (
+        <div className="mb-4">
+          <div className="flex items-center gap-1.5 mb-2">
+            <Gauge size={16} className="text-[#4E6F4E]" aria-hidden="true" />
+            <span className="text-sm font-semibold text-gray-700">Standard Infusion Rates</span>
+          </div>
+          <div className="space-y-2 pl-6" aria-label="Infusion rate schedule">
+            {protocol.infusionRates.map((rate, i) => (
+              <div key={i} className="text-sm text-gray-600 border-l-2 border-[#C1E1B1] pl-3 py-1">
+                <p className="font-medium text-[#4E6F4E]">{rate.setting}</p>
+                <p>
+                  Start: <span className="font-medium">{rate.initialRate}</span>
+                  {rate.maxRate !== rate.initialRate && <> → Max: <span className="font-medium">{rate.maxRate}</span></>}
+                </p>
+                {rate.stepUp && <p className="text-xs text-gray-500">{rate.stepUp}</p>}
+                {rate.duration && <p className="text-xs text-gray-500">Duration: {rate.duration}</p>}
+              </div>
+            ))}
+          </div>
         </div>
       )}
 

@@ -9,7 +9,6 @@ import { PharmacistFallback } from '@/components/action-cards/PharmacistFallback
 import { DrugReactionCard } from '@/components/drug-reaction/DrugReactionCard';
 import { Button } from '@/components/ui/Button';
 import { SeverityGauge } from '@/components/severity/SeverityGauge';
-import { DecisionFlowchart } from '@/components/decision-tree/DecisionFlowchart';
 import { TimelineStrip } from '@/components/timeline/TimelineStrip';
 import { useSessionStore } from '@/store/session.store';
 import { ArrowLeft, RotateCcw } from 'lucide-react';
@@ -31,7 +30,7 @@ export default function DecisionPage() {
 
   if (!decisionResult) return null;
 
-  const { gradingResult, actions, decisionNodes, decisionEdges, drugProtocol, fallbackToPharmacist } = decisionResult;
+  const { gradingResult, actions, drugProtocol, fallbackToPharmacist } = decisionResult;
   const grade = gradingResult.finalGrade;
 
   const handleNewSession = () => {
@@ -83,16 +82,6 @@ export default function DecisionPage() {
       <div>
         <h2 className="text-lg font-bold text-gray-900 mb-3">Immediate Actions</h2>
         <ActionCardGrid actions={actions} />
-      </div>
-
-      {/* Decision Flowchart */}
-      <div>
-        <h2 className="text-lg font-bold text-gray-900 mb-3">Decision Pathway</h2>
-        <GlassPanel className="p-2 md:p-4" intensity="light">
-          <div className="h-[400px] md:h-[500px]">
-            <DecisionFlowchart nodes={decisionNodes} edges={decisionEdges} />
-          </div>
-        </GlassPanel>
       </div>
 
       {/* Drug Protocol Card */}

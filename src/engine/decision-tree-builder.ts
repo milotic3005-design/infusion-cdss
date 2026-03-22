@@ -29,22 +29,33 @@ export function buildDecisionResult(
 
 function buildActions(grade: CTCAEGradeNumber, protocol: ReactionProfile['protocol']): ActionStep[] {
   switch (grade) {
-    case 1:
+    case 1: {
+      const rateInfo = protocol?.infusionRates?.[0];
+      const continueDetail = rateInfo
+        ? `Maintain current rate (standard: ${rateInfo.initialRate}–${rateInfo.maxRate})`
+        : 'Maintain current infusion rate';
       return [
         { id: 'a1-1', order: 1, action: 'Monitor Vitals q15min', detail: 'Continue monitoring vital signs every 15 minutes', icon: 'activity', urgency: 'monitor', grade: 1 },
-        { id: 'a1-2', order: 2, action: 'Continue Infusion', detail: 'Maintain current infusion rate', icon: 'play', urgency: 'monitor', grade: 1 },
+        { id: 'a1-2', order: 2, action: 'Continue Infusion', detail: continueDetail, icon: 'play', urgency: 'monitor', grade: 1 },
         { id: 'a1-3', order: 3, action: 'Document Reaction', detail: 'Record symptoms, time of onset, and vital signs', icon: 'file-text', urgency: 'soon', grade: 1 },
       ];
+    }
 
-    case 2:
+    case 2: {
+      const restartRateInfo = protocol?.infusionRates?.[0];
+      const restartDetail = protocol?.rateAdjustment.grade2
+        || (restartRateInfo
+          ? `Resume at 50% rate (~${restartRateInfo.initialRate} reduced) when symptoms resolve`
+          : 'Resume at 50% of previous rate when symptoms resolve');
       return [
         { id: 'a2-1', order: 1, action: 'Stop Infusion', detail: 'Immediately pause the infusion', icon: 'pause-circle', urgency: 'immediate', grade: 2 },
         { id: 'a2-2', order: 2, action: 'Administer Treatment', detail: protocol?.premeds.length
             ? `Give: ${protocol.premeds.map(p => `${p.medication} ${p.dose}`).join(', ')}`
             : 'Diphenhydramine 50mg IV, NS bolus, Acetaminophen PRN', icon: 'syringe', urgency: 'immediate', grade: 2 },
         { id: 'a2-3', order: 3, action: 'Monitor Response', detail: 'Reassess symptoms every 5-10 minutes', icon: 'clock', urgency: 'soon', grade: 2 },
-        { id: 'a2-4', order: 4, action: 'Restart at 50% Rate', detail: protocol?.rateAdjustment.grade2 || 'Resume at 50% of previous rate when symptoms resolve', icon: 'play', urgency: 'soon', grade: 2 },
+        { id: 'a2-4', order: 4, action: 'Restart at 50% Rate', detail: restartDetail, icon: 'play', urgency: 'soon', grade: 2 },
       ];
+    }
 
     case 3:
       return [

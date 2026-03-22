@@ -76,9 +76,9 @@ export function SeverityGauge({ grade, size = 200 }: SeverityGaugeProps) {
         return (t: number) => arcGenerator({ startAngle: -Math.PI / 2, endAngle: interpolate(t) }) || '';
       });
 
-    // Needle
+    // Needle — shortened so tip stays inside the ring and away from text
     const needleAngle = GRADE_ANGLES[grade];
-    const needleLength = innerRadius - 10;
+    const needleLength = Math.round(innerRadius * 0.72);
 
     const needle = g.append('line')
       .attr('x1', 0)
@@ -102,10 +102,10 @@ export function SeverityGauge({ grade, size = 200 }: SeverityGaugeProps) {
       .attr('r', 6)
       .attr('fill', '#1d1d1f');
 
-    // Grade number
+    // Grade number — placed well below the needle's maximum reach
     g.append('text')
       .attr('text-anchor', 'middle')
-      .attr('y', 20)
+      .attr('y', 58)
       .attr('class', 'severity-gauge')
       .attr('font-size', '36px')
       .attr('fill', CTCAE_COLORS[grade])
@@ -114,7 +114,7 @@ export function SeverityGauge({ grade, size = 200 }: SeverityGaugeProps) {
     // Label
     g.append('text')
       .attr('text-anchor', 'middle')
-      .attr('y', 44)
+      .attr('y', 76)
       .attr('class', 'severity-gauge')
       .attr('font-size', '12px')
       .attr('fill', '#6b7280')
