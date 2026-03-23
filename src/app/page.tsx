@@ -10,7 +10,8 @@ import { Button } from '@/components/ui/Button';
 import { useDrugSearch } from '@/hooks/useDrugSearch';
 import { useDrugProfile } from '@/hooks/useDrugProfile';
 import { useSessionStore } from '@/store/session.store';
-import { ArrowRight, ShieldCheck } from 'lucide-react';
+import Link from 'next/link';
+import { ArrowRight, ShieldCheck, Syringe, Timer } from 'lucide-react';
 import type { RxNormConcept } from '@/types/drug.types';
 
 export default function HomePage() {
@@ -137,6 +138,28 @@ export default function HomePage() {
           </div>
         )}
       </GlassPanel>
+
+      {/* Tools */}
+      <div className="w-full max-w-2xl mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <Link href="/compatibility">
+          <GlassPanel className="p-5 cursor-pointer hover:shadow-md transition-shadow" intensity="light">
+            <div className="flex items-center gap-3 mb-2">
+              <Syringe size={20} className="text-[#4E6F4E]" />
+              <h3 className="font-bold text-[#4E6F4E]">Y-Site Compatibility</h3>
+            </div>
+            <p className="text-sm text-[#8AB78A]">Check IV drug Y-site compatibility based on Trissel&apos;s data</p>
+          </GlassPanel>
+        </Link>
+        <Link href="/titration">
+          <GlassPanel className="p-5 cursor-pointer hover:shadow-md transition-shadow" intensity="light">
+            <div className="flex items-center gap-3 mb-2">
+              <Timer size={20} className="text-[#4E6F4E]" />
+              <h3 className="font-bold text-[#4E6F4E]">Titration Scheduler</h3>
+            </div>
+            <p className="text-sm text-[#8AB78A]">Step-wise infusion rate titration with active timers</p>
+          </GlassPanel>
+        </Link>
+      </div>
 
       <p className="mt-6 text-xs text-[#8AB78A]/70 text-center max-w-sm">
         Data sourced from RxNorm, openFDA, and DailyMed.

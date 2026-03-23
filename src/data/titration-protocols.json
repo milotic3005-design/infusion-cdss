@@ -1,0 +1,251 @@
+{
+  "_comment": "Biologic titration protocols for outpatient infusion centers. Each protocol defines a step-wise rate escalation schedule. Duration of 0 on the final step means 'run until volume is complete' with manual nurse completion. All data is for educational/demo purposes only — verify against institutional protocols.",
+  "protocols": [
+    {
+      "id": "rituximab-first",
+      "drugName": "Rituximab",
+      "brandName": "Rituxan",
+      "genericName": "rituximab",
+      "indication": "First infusion",
+      "totalDoseMg": null,
+      "diluentVolumeMl": 500,
+      "diluent": "NS",
+      "premeds": "Acetaminophen 650mg PO, Diphenhydramine 50mg IV, Methylprednisolone 100mg IV — administer 30 min prior to infusion",
+      "steps": [
+        {
+          "stepNumber": 1,
+          "rateMlHr": 50,
+          "durationMinutes": 30,
+          "triggerCondition": "Begin infusion after premeds administered. Monitor vitals q15min.",
+          "escalationNote": "If tolerated without reaction, escalate to step 2."
+        },
+        {
+          "stepNumber": 2,
+          "rateMlHr": 100,
+          "durationMinutes": 30,
+          "triggerCondition": "No infusion reaction signs after step 1 (no fever, chills, rigors, hypotension).",
+          "escalationNote": "Increase by 50 mL/hr increments every 30 min as tolerated."
+        },
+        {
+          "stepNumber": 3,
+          "rateMlHr": 150,
+          "durationMinutes": 30,
+          "triggerCondition": "No infusion reaction signs after step 2.",
+          "escalationNote": "Continue escalation. Monitor for delayed reactions."
+        },
+        {
+          "stepNumber": 4,
+          "rateMlHr": 200,
+          "durationMinutes": 30,
+          "triggerCondition": "No infusion reaction signs after step 3.",
+          "escalationNote": "Continue escalation toward maximum rate."
+        },
+        {
+          "stepNumber": 5,
+          "rateMlHr": 250,
+          "durationMinutes": 30,
+          "triggerCondition": "No infusion reaction signs after step 4.",
+          "escalationNote": "Approaching maximum rate. Continue monitoring."
+        },
+        {
+          "stepNumber": 6,
+          "rateMlHr": 300,
+          "durationMinutes": 30,
+          "triggerCondition": "No infusion reaction signs after step 5.",
+          "escalationNote": "Near maximum. Final escalation to 400 mL/hr if tolerated."
+        },
+        {
+          "stepNumber": 7,
+          "rateMlHr": 400,
+          "durationMinutes": 0,
+          "triggerCondition": "No infusion reaction signs after step 6.",
+          "escalationNote": "Maximum rate reached. Maintain until infusion complete."
+        }
+      ]
+    },
+    {
+      "id": "rituximab-subsequent",
+      "drugName": "Rituximab",
+      "brandName": "Rituxan",
+      "genericName": "rituximab",
+      "indication": "Subsequent infusions (if first infusion tolerated)",
+      "totalDoseMg": null,
+      "diluentVolumeMl": 500,
+      "diluent": "NS",
+      "premeds": "Acetaminophen 650mg PO, Diphenhydramine 50mg IV — administer 30 min prior",
+      "steps": [
+        {
+          "stepNumber": 1,
+          "rateMlHr": 100,
+          "durationMinutes": 30,
+          "triggerCondition": "Begin infusion after premeds. Monitor vitals q15min for first 30 min.",
+          "escalationNote": "If tolerated, escalate to 200 mL/hr."
+        },
+        {
+          "stepNumber": 2,
+          "rateMlHr": 200,
+          "durationMinutes": 30,
+          "triggerCondition": "No reaction after step 1.",
+          "escalationNote": "Increase by 100 mL/hr every 30 min as tolerated."
+        },
+        {
+          "stepNumber": 3,
+          "rateMlHr": 300,
+          "durationMinutes": 30,
+          "triggerCondition": "No reaction after step 2.",
+          "escalationNote": "Final escalation to maximum rate."
+        },
+        {
+          "stepNumber": 4,
+          "rateMlHr": 400,
+          "durationMinutes": 0,
+          "triggerCondition": "No reaction after step 3.",
+          "escalationNote": "Maximum rate reached. Maintain until infusion complete."
+        }
+      ]
+    },
+    {
+      "id": "infliximab-standard",
+      "drugName": "Infliximab",
+      "brandName": "Remicade",
+      "genericName": "infliximab",
+      "indication": "Standard infusion (all doses)",
+      "totalDoseMg": null,
+      "diluentVolumeMl": 250,
+      "diluent": "NS",
+      "premeds": "Acetaminophen 650mg PO, Diphenhydramine 50mg IV, Hydrocortisone 100mg IV — as per institutional protocol",
+      "steps": [
+        {
+          "stepNumber": 1,
+          "rateMlHr": 10,
+          "durationMinutes": 15,
+          "triggerCondition": "Begin infusion. Monitor vitals at baseline and q15min.",
+          "escalationNote": "If tolerated, increase rate per protocol."
+        },
+        {
+          "stepNumber": 2,
+          "rateMlHr": 20,
+          "durationMinutes": 15,
+          "triggerCondition": "No infusion reaction after step 1.",
+          "escalationNote": "Continue stepwise escalation."
+        },
+        {
+          "stepNumber": 3,
+          "rateMlHr": 40,
+          "durationMinutes": 15,
+          "triggerCondition": "No infusion reaction after step 2.",
+          "escalationNote": "Continue escalation."
+        },
+        {
+          "stepNumber": 4,
+          "rateMlHr": 80,
+          "durationMinutes": 15,
+          "triggerCondition": "No infusion reaction after step 3.",
+          "escalationNote": "Continue escalation toward maximum."
+        },
+        {
+          "stepNumber": 5,
+          "rateMlHr": 150,
+          "durationMinutes": 15,
+          "triggerCondition": "No infusion reaction after step 4.",
+          "escalationNote": "Approaching maximum rate."
+        },
+        {
+          "stepNumber": 6,
+          "rateMlHr": 250,
+          "durationMinutes": 0,
+          "triggerCondition": "No infusion reaction after step 5.",
+          "escalationNote": "Maximum rate reached. Maintain until infusion complete. Total infusion time should be ≥2 hours."
+        }
+      ]
+    },
+    {
+      "id": "natalizumab-standard",
+      "drugName": "Natalizumab",
+      "brandName": "Tysabri",
+      "genericName": "natalizumab",
+      "indication": "Standard infusion (300mg IV q4weeks)",
+      "totalDoseMg": 300,
+      "diluentVolumeMl": 100,
+      "diluent": "NS",
+      "premeds": "None routinely required. Have epinephrine, diphenhydramine, and methylprednisolone available at bedside.",
+      "steps": [
+        {
+          "stepNumber": 1,
+          "rateMlHr": 100,
+          "durationMinutes": 60,
+          "triggerCondition": "Begin infusion. Patient must be observed for hypersensitivity. Monitor vitals q15min.",
+          "escalationNote": "Infuse over approximately 1 hour at constant rate."
+        },
+        {
+          "stepNumber": 2,
+          "rateMlHr": 0,
+          "durationMinutes": 60,
+          "triggerCondition": "Infusion complete.",
+          "escalationNote": "Post-infusion observation period. Monitor for delayed hypersensitivity for 1 hour after infusion ends. Patient must remain in clinic."
+        }
+      ]
+    },
+    {
+      "id": "trastuzumab-loading",
+      "drugName": "Trastuzumab",
+      "brandName": "Herceptin",
+      "genericName": "trastuzumab",
+      "indication": "Loading dose (first infusion, 4mg/kg)",
+      "totalDoseMg": null,
+      "diluentVolumeMl": 250,
+      "diluent": "NS",
+      "premeds": "Acetaminophen 650mg PO, Diphenhydramine 50mg PO — administer 30 min prior",
+      "steps": [
+        {
+          "stepNumber": 1,
+          "rateMlHr": 50,
+          "durationMinutes": 30,
+          "triggerCondition": "Begin infusion after premeds. Monitor vitals q15min.",
+          "escalationNote": "If tolerated, increase to maintenance rate."
+        },
+        {
+          "stepNumber": 2,
+          "rateMlHr": 100,
+          "durationMinutes": 30,
+          "triggerCondition": "No reaction after step 1.",
+          "escalationNote": "Continue escalation."
+        },
+        {
+          "stepNumber": 3,
+          "rateMlHr": 167,
+          "durationMinutes": 0,
+          "triggerCondition": "No reaction after step 2.",
+          "escalationNote": "Target rate to complete loading dose over 90 minutes total. Maintain until complete."
+        }
+      ]
+    },
+    {
+      "id": "trastuzumab-maintenance",
+      "drugName": "Trastuzumab",
+      "brandName": "Herceptin",
+      "genericName": "trastuzumab",
+      "indication": "Maintenance dose (subsequent, 2mg/kg)",
+      "totalDoseMg": null,
+      "diluentVolumeMl": 250,
+      "diluent": "NS",
+      "premeds": "May omit premeds if loading dose was tolerated without reaction.",
+      "steps": [
+        {
+          "stepNumber": 1,
+          "rateMlHr": 250,
+          "durationMinutes": 30,
+          "triggerCondition": "Begin infusion. Prior loading dose must have been tolerated.",
+          "escalationNote": "If tolerated for 30 minutes, may increase to complete over 30 min total."
+        },
+        {
+          "stepNumber": 2,
+          "rateMlHr": 500,
+          "durationMinutes": 0,
+          "triggerCondition": "No reaction after step 1.",
+          "escalationNote": "Maintenance dose may be infused over 30 minutes if prior infusions tolerated."
+        }
+      ]
+    }
+  ]
+}
