@@ -14,8 +14,10 @@ interface TitrationState {
   completedSteps: CompletedStep[];
   sessionId: string | null;
   isRunning: boolean;
+  patientWeightKg: number | null;
 
   selectProtocol: (protocol: TitrationProtocol) => void;
+  setPatientWeight: (weightKg: number | null) => void;
   startStep: (stepIndex: number) => void;
   tick: () => void;
   pause: () => void;
@@ -38,6 +40,7 @@ function createInitialState() {
     completedSteps: [] as CompletedStep[],
     sessionId: null as string | null,
     isRunning: false,
+    patientWeightKg: null as number | null,
   };
 }
 
@@ -90,6 +93,11 @@ export const useTitrationStore = create<TitrationState>((set, get) => {
       };
       set(newState);
       persistState(newState);
+    },
+
+    setPatientWeight: (weightKg) => {
+      set({ patientWeightKg: weightKg });
+      persistState(get() as unknown as InitialState);
     },
 
     startStep: (stepIndex) => {

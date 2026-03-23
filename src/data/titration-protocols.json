@@ -487,13 +487,13 @@
       "totalDoseMg": null,
       "diluentVolumeMl": 250,
       "diluent": "No dilution required (ready-to-use 10% solution)",
-      "premeds": "Acetaminophen 650mg PO ± Diphenhydramine 25–50mg PO — 30 min prior. Ensure adequate hydration before starting. Rates below are per-protocol defaults; calculate weight-based rate (0.5 → 5 mL/kg/hr) for actual patient dose.",
+      "premeds": "Acetaminophen 650mg PO ± Diphenhydramine 25–50mg PO — 30 min prior. Ensure adequate hydration before starting.",
       "steps": [
-        { "stepNumber": 1, "rateMlHr": 30, "durationMinutes": 30, "triggerCondition": "Begin infusion at 0.5 mL/kg/hr (≈30 mL/hr for 60kg patient). Monitor vitals at baseline, 15 min, and 30 min. Observe closely for flush, headache, chills, or back pain.", "escalationNote": "If tolerated without reaction, escalate to step 2." },
-        { "stepNumber": 2, "rateMlHr": 60, "durationMinutes": 30, "triggerCondition": "No infusion reaction signs after step 1 (no headache, rigors, chest tightness, BP change).", "escalationNote": "Double rate if tolerated. Continue monitoring q30min." },
-        { "stepNumber": 3, "rateMlHr": 120, "durationMinutes": 30, "triggerCondition": "No reaction after step 2.", "escalationNote": "Continue doubling rate per protocol." },
-        { "stepNumber": 4, "rateMlHr": 180, "durationMinutes": 30, "triggerCondition": "No reaction after step 3.", "escalationNote": "Approaching target. One final escalation step." },
-        { "stepNumber": 5, "rateMlHr": 240, "durationMinutes": 0, "triggerCondition": "No reaction after step 4.", "escalationNote": "Max rate for first infusion (≈4 mL/kg/hr for 60kg). Maintain until complete. Do not exceed 8 mg/kg/min." }
+        { "stepNumber": 1, "rateMlHr": 30, "rateMlKgHr": 0.5, "durationMinutes": 30, "triggerCondition": "Begin infusion. Monitor vitals at baseline, 15 min, and 30 min. Observe closely for flush, headache, chills, or back pain.", "escalationNote": "If tolerated without reaction, escalate to step 2." },
+        { "stepNumber": 2, "rateMlHr": 60, "rateMlKgHr": 1.0, "durationMinutes": 30, "triggerCondition": "No infusion reaction signs after step 1 (no headache, rigors, chest tightness, BP change).", "escalationNote": "Double rate if tolerated. Continue monitoring q30min." },
+        { "stepNumber": 3, "rateMlHr": 120, "rateMlKgHr": 2.0, "durationMinutes": 30, "triggerCondition": "No reaction after step 2.", "escalationNote": "Continue doubling rate per protocol." },
+        { "stepNumber": 4, "rateMlHr": 180, "rateMlKgHr": 3.0, "durationMinutes": 30, "triggerCondition": "No reaction after step 3.", "escalationNote": "Approaching target. One final escalation step." },
+        { "stepNumber": 5, "rateMlHr": 240, "rateMlKgHr": 4.0, "durationMinutes": 0, "triggerCondition": "No reaction after step 4.", "escalationNote": "Max rate for first infusion. Maintain until complete. Do not exceed 8 mg/kg/min." }
       ]
     },
     {
@@ -507,10 +507,10 @@
       "diluent": "No dilution required (ready-to-use 10% solution)",
       "premeds": "Acetaminophen 650mg PO — 30 min prior. May omit antihistamine if previously tolerated. Maintain adequate hydration throughout.",
       "steps": [
-        { "stepNumber": 1, "rateMlHr": 60, "durationMinutes": 30, "triggerCondition": "Begin at 1 mL/kg/hr (≈60 mL/hr for 60kg). Vitals at baseline and q30min.", "escalationNote": "Start at last tolerated rate if known, otherwise begin here." },
-        { "stepNumber": 2, "rateMlHr": 120, "durationMinutes": 30, "triggerCondition": "No reaction after step 1.", "escalationNote": "If tolerated, increase to target rate." },
-        { "stepNumber": 3, "rateMlHr": 240, "durationMinutes": 30, "triggerCondition": "No reaction after step 2.", "escalationNote": "Approaching max rate." },
-        { "stepNumber": 4, "rateMlHr": 300, "durationMinutes": 0, "triggerCondition": "No reaction after step 3.", "escalationNote": "Max rate ≈5 mL/kg/hr for 60kg. Do not exceed 8 mg/kg/min. Maintain until complete." }
+        { "stepNumber": 1, "rateMlHr": 60, "rateMlKgHr": 1.0, "durationMinutes": 30, "triggerCondition": "Begin infusion. Vitals at baseline and q30min.", "escalationNote": "Start at last tolerated rate if known, otherwise begin here." },
+        { "stepNumber": 2, "rateMlHr": 120, "rateMlKgHr": 2.0, "durationMinutes": 30, "triggerCondition": "No reaction after step 1.", "escalationNote": "If tolerated, increase to target rate." },
+        { "stepNumber": 3, "rateMlHr": 240, "rateMlKgHr": 4.0, "durationMinutes": 30, "triggerCondition": "No reaction after step 2.", "escalationNote": "Approaching max rate." },
+        { "stepNumber": 4, "rateMlHr": 300, "rateMlKgHr": 5.0, "durationMinutes": 0, "triggerCondition": "No reaction after step 3.", "escalationNote": "Max rate. Do not exceed 8 mg/kg/min. Maintain until complete." }
       ]
     },
     {

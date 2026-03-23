@@ -4,6 +4,8 @@ export interface TitrationStep {
   durationMinutes: number;
   triggerCondition: string;
   escalationNote: string;
+  /** When present, rate is weight-based (mL/kg/hr). rateMlHr becomes the default for a ~60 kg reference patient. */
+  rateMlKgHr?: number;
 }
 
 export interface TitrationProtocol {
