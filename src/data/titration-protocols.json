@@ -1,5 +1,5 @@
 {
-  "_comment": "Biologic titration protocols for outpatient infusion centers. Each protocol defines a step-wise rate escalation schedule. Duration of 0 on the final step means 'run until volume is complete' with manual nurse completion. All data is for educational/demo purposes only — verify against institutional protocols.",
+  "_comment": "Biologic/chemo titration protocols for outpatient infusion centers. Duration 0 on final step = 'run until volume complete'. Educational/demo only — verify against institutional protocols.",
   "protocols": [
     {
       "id": "rituximab-first",
@@ -10,57 +10,15 @@
       "totalDoseMg": null,
       "diluentVolumeMl": 500,
       "diluent": "NS",
-      "premeds": "Acetaminophen 650mg PO, Diphenhydramine 50mg IV, Methylprednisolone 100mg IV — administer 30 min prior to infusion",
+      "premeds": "Acetaminophen 650mg PO, Diphenhydramine 50mg IV, Methylprednisolone 100mg IV — 30 min prior",
       "steps": [
-        {
-          "stepNumber": 1,
-          "rateMlHr": 50,
-          "durationMinutes": 30,
-          "triggerCondition": "Begin infusion after premeds administered. Monitor vitals q15min.",
-          "escalationNote": "If tolerated without reaction, escalate to step 2."
-        },
-        {
-          "stepNumber": 2,
-          "rateMlHr": 100,
-          "durationMinutes": 30,
-          "triggerCondition": "No infusion reaction signs after step 1 (no fever, chills, rigors, hypotension).",
-          "escalationNote": "Increase by 50 mL/hr increments every 30 min as tolerated."
-        },
-        {
-          "stepNumber": 3,
-          "rateMlHr": 150,
-          "durationMinutes": 30,
-          "triggerCondition": "No infusion reaction signs after step 2.",
-          "escalationNote": "Continue escalation. Monitor for delayed reactions."
-        },
-        {
-          "stepNumber": 4,
-          "rateMlHr": 200,
-          "durationMinutes": 30,
-          "triggerCondition": "No infusion reaction signs after step 3.",
-          "escalationNote": "Continue escalation toward maximum rate."
-        },
-        {
-          "stepNumber": 5,
-          "rateMlHr": 250,
-          "durationMinutes": 30,
-          "triggerCondition": "No infusion reaction signs after step 4.",
-          "escalationNote": "Approaching maximum rate. Continue monitoring."
-        },
-        {
-          "stepNumber": 6,
-          "rateMlHr": 300,
-          "durationMinutes": 30,
-          "triggerCondition": "No infusion reaction signs after step 5.",
-          "escalationNote": "Near maximum. Final escalation to 400 mL/hr if tolerated."
-        },
-        {
-          "stepNumber": 7,
-          "rateMlHr": 400,
-          "durationMinutes": 0,
-          "triggerCondition": "No infusion reaction signs after step 6.",
-          "escalationNote": "Maximum rate reached. Maintain until infusion complete."
-        }
+        { "stepNumber": 1, "rateMlHr": 50, "durationMinutes": 30, "triggerCondition": "Begin after premeds. Monitor vitals q15min.", "escalationNote": "If tolerated, escalate to step 2." },
+        { "stepNumber": 2, "rateMlHr": 100, "durationMinutes": 30, "triggerCondition": "No reaction signs (fever, chills, rigors, hypotension).", "escalationNote": "Increase by 50 mL/hr q30min." },
+        { "stepNumber": 3, "rateMlHr": 150, "durationMinutes": 30, "triggerCondition": "No reaction after step 2.", "escalationNote": "Continue escalation." },
+        { "stepNumber": 4, "rateMlHr": 200, "durationMinutes": 30, "triggerCondition": "No reaction after step 3.", "escalationNote": "Continue toward max rate." },
+        { "stepNumber": 5, "rateMlHr": 250, "durationMinutes": 30, "triggerCondition": "No reaction after step 4.", "escalationNote": "Approaching max rate." },
+        { "stepNumber": 6, "rateMlHr": 300, "durationMinutes": 30, "triggerCondition": "No reaction after step 5.", "escalationNote": "Final escalation to 400 mL/hr if tolerated." },
+        { "stepNumber": 7, "rateMlHr": 400, "durationMinutes": 0, "triggerCondition": "No reaction after step 6.", "escalationNote": "Max rate. Maintain until complete." }
       ]
     },
     {
@@ -68,40 +26,16 @@
       "drugName": "Rituximab",
       "brandName": "Rituxan",
       "genericName": "rituximab",
-      "indication": "Subsequent infusions (if first infusion tolerated)",
+      "indication": "Subsequent infusions (if first tolerated)",
       "totalDoseMg": null,
       "diluentVolumeMl": 500,
       "diluent": "NS",
-      "premeds": "Acetaminophen 650mg PO, Diphenhydramine 50mg IV — administer 30 min prior",
+      "premeds": "Acetaminophen 650mg PO, Diphenhydramine 50mg IV — 30 min prior",
       "steps": [
-        {
-          "stepNumber": 1,
-          "rateMlHr": 100,
-          "durationMinutes": 30,
-          "triggerCondition": "Begin infusion after premeds. Monitor vitals q15min for first 30 min.",
-          "escalationNote": "If tolerated, escalate to 200 mL/hr."
-        },
-        {
-          "stepNumber": 2,
-          "rateMlHr": 200,
-          "durationMinutes": 30,
-          "triggerCondition": "No reaction after step 1.",
-          "escalationNote": "Increase by 100 mL/hr every 30 min as tolerated."
-        },
-        {
-          "stepNumber": 3,
-          "rateMlHr": 300,
-          "durationMinutes": 30,
-          "triggerCondition": "No reaction after step 2.",
-          "escalationNote": "Final escalation to maximum rate."
-        },
-        {
-          "stepNumber": 4,
-          "rateMlHr": 400,
-          "durationMinutes": 0,
-          "triggerCondition": "No reaction after step 3.",
-          "escalationNote": "Maximum rate reached. Maintain until infusion complete."
-        }
+        { "stepNumber": 1, "rateMlHr": 100, "durationMinutes": 30, "triggerCondition": "Begin after premeds. Vitals q15min.", "escalationNote": "If tolerated, escalate to 200 mL/hr." },
+        { "stepNumber": 2, "rateMlHr": 200, "durationMinutes": 30, "triggerCondition": "No reaction after step 1.", "escalationNote": "Increase by 100 mL/hr q30min." },
+        { "stepNumber": 3, "rateMlHr": 300, "durationMinutes": 30, "triggerCondition": "No reaction after step 2.", "escalationNote": "Final escalation." },
+        { "stepNumber": 4, "rateMlHr": 400, "durationMinutes": 0, "triggerCondition": "No reaction after step 3.", "escalationNote": "Max rate. Maintain until complete." }
       ]
     },
     {
@@ -113,50 +47,14 @@
       "totalDoseMg": null,
       "diluentVolumeMl": 250,
       "diluent": "NS",
-      "premeds": "Acetaminophen 650mg PO, Diphenhydramine 50mg IV, Hydrocortisone 100mg IV — as per institutional protocol",
+      "premeds": "Acetaminophen 650mg PO, Diphenhydramine 50mg IV, Hydrocortisone 100mg IV",
       "steps": [
-        {
-          "stepNumber": 1,
-          "rateMlHr": 10,
-          "durationMinutes": 15,
-          "triggerCondition": "Begin infusion. Monitor vitals at baseline and q15min.",
-          "escalationNote": "If tolerated, increase rate per protocol."
-        },
-        {
-          "stepNumber": 2,
-          "rateMlHr": 20,
-          "durationMinutes": 15,
-          "triggerCondition": "No infusion reaction after step 1.",
-          "escalationNote": "Continue stepwise escalation."
-        },
-        {
-          "stepNumber": 3,
-          "rateMlHr": 40,
-          "durationMinutes": 15,
-          "triggerCondition": "No infusion reaction after step 2.",
-          "escalationNote": "Continue escalation."
-        },
-        {
-          "stepNumber": 4,
-          "rateMlHr": 80,
-          "durationMinutes": 15,
-          "triggerCondition": "No infusion reaction after step 3.",
-          "escalationNote": "Continue escalation toward maximum."
-        },
-        {
-          "stepNumber": 5,
-          "rateMlHr": 150,
-          "durationMinutes": 15,
-          "triggerCondition": "No infusion reaction after step 4.",
-          "escalationNote": "Approaching maximum rate."
-        },
-        {
-          "stepNumber": 6,
-          "rateMlHr": 250,
-          "durationMinutes": 0,
-          "triggerCondition": "No infusion reaction after step 5.",
-          "escalationNote": "Maximum rate reached. Maintain until infusion complete. Total infusion time should be ≥2 hours."
-        }
+        { "stepNumber": 1, "rateMlHr": 10, "durationMinutes": 15, "triggerCondition": "Begin infusion. Vitals q15min.", "escalationNote": "If tolerated, increase rate." },
+        { "stepNumber": 2, "rateMlHr": 20, "durationMinutes": 15, "triggerCondition": "No reaction after step 1.", "escalationNote": "Continue escalation." },
+        { "stepNumber": 3, "rateMlHr": 40, "durationMinutes": 15, "triggerCondition": "No reaction after step 2.", "escalationNote": "Continue escalation." },
+        { "stepNumber": 4, "rateMlHr": 80, "durationMinutes": 15, "triggerCondition": "No reaction after step 3.", "escalationNote": "Continue toward max." },
+        { "stepNumber": 5, "rateMlHr": 150, "durationMinutes": 15, "triggerCondition": "No reaction after step 4.", "escalationNote": "Approaching max rate." },
+        { "stepNumber": 6, "rateMlHr": 250, "durationMinutes": 0, "triggerCondition": "No reaction after step 5.", "escalationNote": "Max rate. Total time ≥2 hours." }
       ]
     },
     {
@@ -168,22 +66,10 @@
       "totalDoseMg": 300,
       "diluentVolumeMl": 100,
       "diluent": "NS",
-      "premeds": "None routinely required. Have epinephrine, diphenhydramine, and methylprednisolone available at bedside.",
+      "premeds": "None routinely required. Have epinephrine, diphenhydramine, methylprednisolone at bedside.",
       "steps": [
-        {
-          "stepNumber": 1,
-          "rateMlHr": 100,
-          "durationMinutes": 60,
-          "triggerCondition": "Begin infusion. Patient must be observed for hypersensitivity. Monitor vitals q15min.",
-          "escalationNote": "Infuse over approximately 1 hour at constant rate."
-        },
-        {
-          "stepNumber": 2,
-          "rateMlHr": 0,
-          "durationMinutes": 60,
-          "triggerCondition": "Infusion complete.",
-          "escalationNote": "Post-infusion observation period. Monitor for delayed hypersensitivity for 1 hour after infusion ends. Patient must remain in clinic."
-        }
+        { "stepNumber": 1, "rateMlHr": 100, "durationMinutes": 60, "triggerCondition": "Begin infusion. Monitor vitals q15min.", "escalationNote": "Infuse over ~1 hour at constant rate." },
+        { "stepNumber": 2, "rateMlHr": 0, "durationMinutes": 60, "triggerCondition": "Infusion complete.", "escalationNote": "Post-infusion observation 1 hour. Patient must remain in clinic." }
       ]
     },
     {
@@ -195,29 +81,11 @@
       "totalDoseMg": null,
       "diluentVolumeMl": 250,
       "diluent": "NS",
-      "premeds": "Acetaminophen 650mg PO, Diphenhydramine 50mg PO — administer 30 min prior",
+      "premeds": "Acetaminophen 650mg PO, Diphenhydramine 50mg PO — 30 min prior",
       "steps": [
-        {
-          "stepNumber": 1,
-          "rateMlHr": 50,
-          "durationMinutes": 30,
-          "triggerCondition": "Begin infusion after premeds. Monitor vitals q15min.",
-          "escalationNote": "If tolerated, increase to maintenance rate."
-        },
-        {
-          "stepNumber": 2,
-          "rateMlHr": 100,
-          "durationMinutes": 30,
-          "triggerCondition": "No reaction after step 1.",
-          "escalationNote": "Continue escalation."
-        },
-        {
-          "stepNumber": 3,
-          "rateMlHr": 167,
-          "durationMinutes": 0,
-          "triggerCondition": "No reaction after step 2.",
-          "escalationNote": "Target rate to complete loading dose over 90 minutes total. Maintain until complete."
-        }
+        { "stepNumber": 1, "rateMlHr": 50, "durationMinutes": 30, "triggerCondition": "Begin after premeds. Vitals q15min.", "escalationNote": "If tolerated, increase rate." },
+        { "stepNumber": 2, "rateMlHr": 100, "durationMinutes": 30, "triggerCondition": "No reaction after step 1.", "escalationNote": "Continue escalation." },
+        { "stepNumber": 3, "rateMlHr": 167, "durationMinutes": 0, "triggerCondition": "No reaction after step 2.", "escalationNote": "Target 90 min total. Maintain until complete." }
       ]
     },
     {
@@ -229,22 +97,385 @@
       "totalDoseMg": null,
       "diluentVolumeMl": 250,
       "diluent": "NS",
-      "premeds": "May omit premeds if loading dose was tolerated without reaction.",
+      "premeds": "May omit premeds if loading dose tolerated.",
       "steps": [
-        {
-          "stepNumber": 1,
-          "rateMlHr": 250,
-          "durationMinutes": 30,
-          "triggerCondition": "Begin infusion. Prior loading dose must have been tolerated.",
-          "escalationNote": "If tolerated for 30 minutes, may increase to complete over 30 min total."
-        },
-        {
-          "stepNumber": 2,
-          "rateMlHr": 500,
-          "durationMinutes": 0,
-          "triggerCondition": "No reaction after step 1.",
-          "escalationNote": "Maintenance dose may be infused over 30 minutes if prior infusions tolerated."
-        }
+        { "stepNumber": 1, "rateMlHr": 250, "durationMinutes": 30, "triggerCondition": "Begin infusion. Prior loading dose must have been tolerated.", "escalationNote": "If tolerated 30 min, may increase." },
+        { "stepNumber": 2, "rateMlHr": 500, "durationMinutes": 0, "triggerCondition": "No reaction after step 1.", "escalationNote": "May complete over 30 min if prior infusions tolerated." }
+      ]
+    },
+    {
+      "id": "pembrolizumab-standard",
+      "drugName": "Pembrolizumab",
+      "brandName": "Keytruda",
+      "genericName": "pembrolizumab",
+      "indication": "Standard infusion (200mg or 400mg IV)",
+      "totalDoseMg": null,
+      "diluentVolumeMl": 100,
+      "diluent": "NS",
+      "premeds": "None routinely required. Monitor for immune-mediated reactions.",
+      "steps": [
+        { "stepNumber": 1, "rateMlHr": 200, "durationMinutes": 30, "triggerCondition": "Begin infusion through 0.2μm in-line filter. Vitals q15min.", "escalationNote": "Infuse over 30 minutes at constant rate." }
+      ]
+    },
+    {
+      "id": "nivolumab-standard",
+      "drugName": "Nivolumab",
+      "brandName": "Opdivo",
+      "genericName": "nivolumab",
+      "indication": "Standard infusion (240mg or 480mg IV)",
+      "totalDoseMg": null,
+      "diluentVolumeMl": 100,
+      "diluent": "NS",
+      "premeds": "None routinely required. Monitor for immune-mediated adverse reactions.",
+      "steps": [
+        { "stepNumber": 1, "rateMlHr": 100, "durationMinutes": 30, "triggerCondition": "Begin infusion through 0.2μm filter. Vitals q15min.", "escalationNote": "240mg dose: infuse over 30 min." },
+        { "stepNumber": 2, "rateMlHr": 200, "durationMinutes": 0, "triggerCondition": "No reaction after step 1.", "escalationNote": "480mg dose may require 60 min total. Adjust rate to volume." }
+      ]
+    },
+    {
+      "id": "ipilimumab-standard",
+      "drugName": "Ipilimumab",
+      "brandName": "Yervoy",
+      "genericName": "ipilimumab",
+      "indication": "Standard infusion (3mg/kg IV q3weeks × 4 doses)",
+      "totalDoseMg": null,
+      "diluentVolumeMl": 100,
+      "diluent": "NS",
+      "premeds": "None routinely required. Have emergency meds available.",
+      "steps": [
+        { "stepNumber": 1, "rateMlHr": 50, "durationMinutes": 15, "triggerCondition": "Begin infusion through 0.2μm filter. Vitals at baseline.", "escalationNote": "If tolerated, increase rate." },
+        { "stepNumber": 2, "rateMlHr": 100, "durationMinutes": 15, "triggerCondition": "No reaction after step 1.", "escalationNote": "Continue escalation." },
+        { "stepNumber": 3, "rateMlHr": 200, "durationMinutes": 0, "triggerCondition": "No reaction after step 2.", "escalationNote": "Target 90 min total infusion. Maintain until complete." }
+      ]
+    },
+    {
+      "id": "atezolizumab-first",
+      "drugName": "Atezolizumab",
+      "brandName": "Tecentriq",
+      "genericName": "atezolizumab",
+      "indication": "First infusion (840mg or 1200mg IV)",
+      "totalDoseMg": null,
+      "diluentVolumeMl": 250,
+      "diluent": "NS",
+      "premeds": "None routinely required.",
+      "steps": [
+        { "stepNumber": 1, "rateMlHr": 250, "durationMinutes": 60, "triggerCondition": "Begin infusion through 0.2μm filter. Vitals q15min.", "escalationNote": "First dose: infuse over 60 minutes." },
+        { "stepNumber": 2, "rateMlHr": 0, "durationMinutes": 30, "triggerCondition": "Infusion complete.", "escalationNote": "Post-infusion observation 30 min. If tolerated, subsequent doses over 30 min." }
+      ]
+    },
+    {
+      "id": "atezolizumab-subsequent",
+      "drugName": "Atezolizumab",
+      "brandName": "Tecentriq",
+      "genericName": "atezolizumab",
+      "indication": "Subsequent infusions (if first tolerated)",
+      "totalDoseMg": null,
+      "diluentVolumeMl": 250,
+      "diluent": "NS",
+      "premeds": "None routinely required.",
+      "steps": [
+        { "stepNumber": 1, "rateMlHr": 500, "durationMinutes": 30, "triggerCondition": "Begin infusion. Prior infusion must have been tolerated.", "escalationNote": "Infuse over 30 minutes." }
+      ]
+    },
+    {
+      "id": "bevacizumab-first",
+      "drugName": "Bevacizumab",
+      "brandName": "Avastin",
+      "genericName": "bevacizumab",
+      "indication": "First infusion",
+      "totalDoseMg": null,
+      "diluentVolumeMl": 100,
+      "diluent": "NS",
+      "premeds": "None routinely required.",
+      "steps": [
+        { "stepNumber": 1, "rateMlHr": 67, "durationMinutes": 90, "triggerCondition": "Begin infusion. Vitals q15min for first infusion.", "escalationNote": "First dose: infuse over 90 minutes. If tolerated, next over 60 min." }
+      ]
+    },
+    {
+      "id": "bevacizumab-second",
+      "drugName": "Bevacizumab",
+      "brandName": "Avastin",
+      "genericName": "bevacizumab",
+      "indication": "Second infusion (if first tolerated)",
+      "totalDoseMg": null,
+      "diluentVolumeMl": 100,
+      "diluent": "NS",
+      "premeds": "None routinely required.",
+      "steps": [
+        { "stepNumber": 1, "rateMlHr": 100, "durationMinutes": 60, "triggerCondition": "Begin infusion. First infusion must have been tolerated.", "escalationNote": "Infuse over 60 min. If tolerated, subsequent over 30 min." }
+      ]
+    },
+    {
+      "id": "bevacizumab-subsequent",
+      "drugName": "Bevacizumab",
+      "brandName": "Avastin",
+      "genericName": "bevacizumab",
+      "indication": "Subsequent infusions (3rd+)",
+      "totalDoseMg": null,
+      "diluentVolumeMl": 100,
+      "diluent": "NS",
+      "premeds": "None routinely required.",
+      "steps": [
+        { "stepNumber": 1, "rateMlHr": 200, "durationMinutes": 30, "triggerCondition": "Prior infusions tolerated. Begin infusion.", "escalationNote": "Infuse over 30 minutes." }
+      ]
+    },
+    {
+      "id": "cetuximab-first",
+      "drugName": "Cetuximab",
+      "brandName": "Erbitux",
+      "genericName": "cetuximab",
+      "indication": "First infusion (loading dose, 400mg/m²)",
+      "totalDoseMg": null,
+      "diluentVolumeMl": 250,
+      "diluent": "NS",
+      "premeds": "Diphenhydramine 50mg IV — 30 min prior. H2 blocker may also be given.",
+      "steps": [
+        { "stepNumber": 1, "rateMlHr": 25, "durationMinutes": 15, "triggerCondition": "Begin infusion. Monitor closely for anaphylaxis first 15 min.", "escalationNote": "If tolerated, escalate." },
+        { "stepNumber": 2, "rateMlHr": 50, "durationMinutes": 15, "triggerCondition": "No reaction after step 1.", "escalationNote": "Continue escalation." },
+        { "stepNumber": 3, "rateMlHr": 100, "durationMinutes": 15, "triggerCondition": "No reaction after step 2.", "escalationNote": "Continue toward target rate." },
+        { "stepNumber": 4, "rateMlHr": 125, "durationMinutes": 0, "triggerCondition": "No reaction after step 3.", "escalationNote": "Max rate for loading dose. Total time ~120 min. Do not exceed 10 mg/min." }
+      ]
+    },
+    {
+      "id": "cetuximab-maintenance",
+      "drugName": "Cetuximab",
+      "brandName": "Erbitux",
+      "genericName": "cetuximab",
+      "indication": "Maintenance dose (weekly, 250mg/m²)",
+      "totalDoseMg": null,
+      "diluentVolumeMl": 250,
+      "diluent": "NS",
+      "premeds": "Diphenhydramine 50mg IV — 30 min prior.",
+      "steps": [
+        { "stepNumber": 1, "rateMlHr": 50, "durationMinutes": 15, "triggerCondition": "Begin infusion. Vitals at baseline.", "escalationNote": "If tolerated, escalate." },
+        { "stepNumber": 2, "rateMlHr": 125, "durationMinutes": 0, "triggerCondition": "No reaction after step 1.", "escalationNote": "Max rate. Total time ~60 min. Do not exceed 10 mg/min." }
+      ]
+    },
+    {
+      "id": "paclitaxel-standard",
+      "drugName": "Paclitaxel",
+      "brandName": "Taxol",
+      "genericName": "paclitaxel",
+      "indication": "Standard infusion (various doses)",
+      "totalDoseMg": null,
+      "diluentVolumeMl": 500,
+      "diluent": "NS",
+      "premeds": "Dexamethasone 20mg IV, Diphenhydramine 50mg IV, Famotidine 20mg IV — 30 min prior. Use non-PVC tubing with 0.22μm filter.",
+      "steps": [
+        { "stepNumber": 1, "rateMlHr": 50, "durationMinutes": 15, "triggerCondition": "Begin infusion with non-PVC set. Monitor closely for hypersensitivity.", "escalationNote": "Most reactions occur in first 10 min. If tolerated, escalate." },
+        { "stepNumber": 2, "rateMlHr": 100, "durationMinutes": 15, "triggerCondition": "No reaction after step 1.", "escalationNote": "Continue escalation." },
+        { "stepNumber": 3, "rateMlHr": 167, "durationMinutes": 0, "triggerCondition": "No reaction after step 2.", "escalationNote": "Target 3-hour total infusion. Maintain until complete." }
+      ]
+    },
+    {
+      "id": "docetaxel-standard",
+      "drugName": "Docetaxel",
+      "brandName": "Taxotere",
+      "genericName": "docetaxel",
+      "indication": "Standard infusion",
+      "totalDoseMg": null,
+      "diluentVolumeMl": 250,
+      "diluent": "NS",
+      "premeds": "Dexamethasone 8mg PO BID × 3 days starting day before. Diphenhydramine 50mg IV — 30 min prior.",
+      "steps": [
+        { "stepNumber": 1, "rateMlHr": 50, "durationMinutes": 15, "triggerCondition": "Begin infusion. Monitor for hypersensitivity.", "escalationNote": "If tolerated, escalate." },
+        { "stepNumber": 2, "rateMlHr": 125, "durationMinutes": 15, "triggerCondition": "No reaction after step 1.", "escalationNote": "Continue toward target rate." },
+        { "stepNumber": 3, "rateMlHr": 250, "durationMinutes": 0, "triggerCondition": "No reaction after step 2.", "escalationNote": "Target 1-hour total infusion. Maintain until complete." }
+      ]
+    },
+    {
+      "id": "carboplatin-standard",
+      "drugName": "Carboplatin",
+      "brandName": "Paraplatin",
+      "genericName": "carboplatin",
+      "indication": "Standard infusion (AUC-based dosing)",
+      "totalDoseMg": null,
+      "diluentVolumeMl": 250,
+      "diluent": "D5W",
+      "premeds": "Dexamethasone 20mg IV, Ondansetron 16mg IV — 30 min prior. Have epinephrine available.",
+      "steps": [
+        { "stepNumber": 1, "rateMlHr": 50, "durationMinutes": 15, "triggerCondition": "Begin infusion. Monitor for hypersensitivity especially after multiple cycles.", "escalationNote": "If tolerated, escalate." },
+        { "stepNumber": 2, "rateMlHr": 125, "durationMinutes": 15, "triggerCondition": "No reaction after step 1.", "escalationNote": "Continue escalation." },
+        { "stepNumber": 3, "rateMlHr": 250, "durationMinutes": 0, "triggerCondition": "No reaction after step 2.", "escalationNote": "Target 30–60 min total. Maintain until complete." }
+      ]
+    },
+    {
+      "id": "cisplatin-standard",
+      "drugName": "Cisplatin",
+      "brandName": "Platinol",
+      "genericName": "cisplatin",
+      "indication": "Standard infusion (with hydration)",
+      "totalDoseMg": null,
+      "diluentVolumeMl": 500,
+      "diluent": "NS",
+      "premeds": "Ondansetron 16mg IV + Dexamethasone 20mg IV. Pre-hydration: NS 1L over 2hr. Mannitol 12.5g IV if ordered.",
+      "steps": [
+        { "stepNumber": 1, "rateMlHr": 100, "durationMinutes": 30, "triggerCondition": "Begin after pre-hydration complete. Vitals q15min.", "escalationNote": "If tolerated, escalate." },
+        { "stepNumber": 2, "rateMlHr": 250, "durationMinutes": 0, "triggerCondition": "No reaction after step 1.", "escalationNote": "Target 1–2 hour total. Post-hydration required." }
+      ]
+    },
+    {
+      "id": "oxaliplatin-standard",
+      "drugName": "Oxaliplatin",
+      "brandName": "Eloxatin",
+      "genericName": "oxaliplatin",
+      "indication": "Standard infusion (85 or 130 mg/m²)",
+      "totalDoseMg": null,
+      "diluentVolumeMl": 500,
+      "diluent": "D5W",
+      "premeds": "Ondansetron 16mg IV + Dexamethasone 12mg IV — 30 min prior. Do NOT use saline or aluminum needles.",
+      "steps": [
+        { "stepNumber": 1, "rateMlHr": 125, "durationMinutes": 30, "triggerCondition": "Begin infusion in D5W only (incompatible with NS). Vitals q15min.", "escalationNote": "If tolerated, escalate." },
+        { "stepNumber": 2, "rateMlHr": 250, "durationMinutes": 0, "triggerCondition": "No reaction after step 1.", "escalationNote": "Target 2-hour total infusion. Watch for cold-triggered paresthesias." }
+      ]
+    },
+    {
+      "id": "irinotecan-standard",
+      "drugName": "Irinotecan",
+      "brandName": "Camptosar",
+      "genericName": "irinotecan",
+      "indication": "Standard infusion (125–350 mg/m²)",
+      "totalDoseMg": null,
+      "diluentVolumeMl": 500,
+      "diluent": "D5W",
+      "premeds": "Ondansetron 16mg IV + Dexamethasone 10mg IV. Atropine 0.25mg IV PRN for cholinergic syndrome.",
+      "steps": [
+        { "stepNumber": 1, "rateMlHr": 167, "durationMinutes": 30, "triggerCondition": "Begin infusion. Monitor for cholinergic symptoms (diarrhea, salivation, diaphoresis).", "escalationNote": "If tolerated, maintain rate." },
+        { "stepNumber": 2, "rateMlHr": 333, "durationMinutes": 0, "triggerCondition": "No cholinergic symptoms after step 1.", "escalationNote": "Target 90-min total. Give atropine if cholinergic sx occur." }
+      ]
+    },
+    {
+      "id": "etoposide-standard",
+      "drugName": "Etoposide",
+      "brandName": "VePesid",
+      "genericName": "etoposide",
+      "indication": "Standard infusion",
+      "totalDoseMg": null,
+      "diluentVolumeMl": 500,
+      "diluent": "NS",
+      "premeds": "Ondansetron 8mg IV, Dexamethasone 10mg IV — 30 min prior.",
+      "steps": [
+        { "stepNumber": 1, "rateMlHr": 100, "durationMinutes": 15, "triggerCondition": "Begin infusion. Monitor BP q15min (risk of hypotension with rapid infusion).", "escalationNote": "If tolerated, maintain rate. Do NOT infuse faster than 200 mL/hr." },
+        { "stepNumber": 2, "rateMlHr": 200, "durationMinutes": 0, "triggerCondition": "No hypotension after step 1.", "escalationNote": "Max rate 200 mL/hr. Target ≥60 min total infusion." }
+      ]
+    },
+    {
+      "id": "gemcitabine-standard",
+      "drugName": "Gemcitabine",
+      "brandName": "Gemzar",
+      "genericName": "gemcitabine",
+      "indication": "Standard infusion (1000–1250 mg/m²)",
+      "totalDoseMg": null,
+      "diluentVolumeMl": 250,
+      "diluent": "NS",
+      "premeds": "Ondansetron 8mg IV if nausea history. Dexamethasone 4mg IV optional.",
+      "steps": [
+        { "stepNumber": 1, "rateMlHr": 500, "durationMinutes": 30, "triggerCondition": "Begin infusion. Target 30-minute infusion (10 mg/m²/min rate). Vitals at baseline and 15 min.", "escalationNote": "Fixed-rate infusion over 30 min. Do NOT exceed 30 min total." }
+      ]
+    },
+    {
+      "id": "doxorubicin-standard",
+      "drugName": "Doxorubicin",
+      "brandName": "Adriamycin",
+      "genericName": "doxorubicin",
+      "indication": "Standard IV push or infusion",
+      "totalDoseMg": null,
+      "diluentVolumeMl": 100,
+      "diluent": "NS",
+      "premeds": "Ondansetron 16mg IV + Dexamethasone 12mg IV — 30 min prior. Vesicant — verify IV patency before starting.",
+      "steps": [
+        { "stepNumber": 1, "rateMlHr": 50, "durationMinutes": 5, "triggerCondition": "Begin slowly. Verify IV site patency — vesicant risk. Monitor for flare reaction.", "escalationNote": "If no local reaction, escalate." },
+        { "stepNumber": 2, "rateMlHr": 200, "durationMinutes": 0, "triggerCondition": "No local reaction or pain after step 1.", "escalationNote": "Complete over 15–30 min total. Monitor IV site continuously." }
+      ]
+    },
+    {
+      "id": "cyclophosphamide-standard",
+      "drugName": "Cyclophosphamide",
+      "brandName": "Cytoxan",
+      "genericName": "cyclophosphamide",
+      "indication": "Standard infusion",
+      "totalDoseMg": null,
+      "diluentVolumeMl": 250,
+      "diluent": "NS",
+      "premeds": "Ondansetron 16mg IV + Dexamethasone 10mg IV. Mesna for doses >1g/m². Aggressive hydration.",
+      "steps": [
+        { "stepNumber": 1, "rateMlHr": 125, "durationMinutes": 15, "triggerCondition": "Begin infusion after hydration. Vitals q15min.", "escalationNote": "If tolerated, escalate." },
+        { "stepNumber": 2, "rateMlHr": 250, "durationMinutes": 0, "triggerCondition": "No reaction after step 1.", "escalationNote": "Target 1-hour total. Post-infusion hydration required." }
+      ]
+    },
+    {
+      "id": "methotrexate-high-dose",
+      "drugName": "Methotrexate",
+      "brandName": "Trexall",
+      "genericName": "methotrexate",
+      "indication": "High-dose infusion (≥500 mg/m²)",
+      "totalDoseMg": null,
+      "diluentVolumeMl": 500,
+      "diluent": "D5W",
+      "premeds": "Aggressive pre-hydration with NS + NaHCO3. Ondansetron 8mg IV. Urine pH must be ≥7.0 before starting.",
+      "steps": [
+        { "stepNumber": 1, "rateMlHr": 50, "durationMinutes": 30, "triggerCondition": "Begin infusion (10% of dose over first 30 min). Verify urine pH ≥7.0.", "escalationNote": "Loading portion. If tolerated, begin maintenance rate." },
+        { "stepNumber": 2, "rateMlHr": 200, "durationMinutes": 0, "triggerCondition": "Loading portion complete.", "escalationNote": "Remainder over 4–24 hours per protocol. Leucovorin rescue begins 24h after start." }
+      ]
+    },
+    {
+      "id": "durvalumab-standard",
+      "drugName": "Durvalumab",
+      "brandName": "Imfinzi",
+      "genericName": "durvalumab",
+      "indication": "Standard infusion (10 mg/kg IV q2weeks or 1500mg q4weeks)",
+      "totalDoseMg": null,
+      "diluentVolumeMl": 100,
+      "diluent": "NS",
+      "premeds": "None routinely required.",
+      "steps": [
+        { "stepNumber": 1, "rateMlHr": 100, "durationMinutes": 60, "triggerCondition": "Begin infusion through 0.2μm filter. Vitals q15min.", "escalationNote": "Infuse over 60 minutes at constant rate." }
+      ]
+    },
+    {
+      "id": "avelumab-standard",
+      "drugName": "Avelumab",
+      "brandName": "Bavencio",
+      "genericName": "avelumab",
+      "indication": "Standard infusion (800mg IV q2weeks)",
+      "totalDoseMg": 800,
+      "diluentVolumeMl": 250,
+      "diluent": "NS",
+      "premeds": "Acetaminophen 650mg PO + Diphenhydramine 25mg IV — first 4 infusions. After 4th, premeds at discretion.",
+      "steps": [
+        { "stepNumber": 1, "rateMlHr": 250, "durationMinutes": 60, "triggerCondition": "Begin infusion through 0.2μm filter. Vitals q15min.", "escalationNote": "Infuse over 60 minutes at constant rate." }
+      ]
+    },
+    {
+      "id": "daratumumab-first",
+      "drugName": "Daratumumab",
+      "brandName": "Darzalex",
+      "genericName": "daratumumab",
+      "indication": "First infusion (16 mg/kg IV)",
+      "totalDoseMg": null,
+      "diluentVolumeMl": 1000,
+      "diluent": "NS",
+      "premeds": "Methylprednisolone 100mg IV, Acetaminophen 650mg PO, Diphenhydramine 25mg IV, Montelukast 10mg PO — 1 hr prior.",
+      "steps": [
+        { "stepNumber": 1, "rateMlHr": 50, "durationMinutes": 60, "triggerCondition": "Begin infusion. Monitor vitals q15min. High infusion reaction risk (~50%).", "escalationNote": "If tolerated 1 hr, escalate." },
+        { "stepNumber": 2, "rateMlHr": 100, "durationMinutes": 60, "triggerCondition": "No reaction after step 1.", "escalationNote": "If tolerated, escalate." },
+        { "stepNumber": 3, "rateMlHr": 150, "durationMinutes": 60, "triggerCondition": "No reaction after step 2.", "escalationNote": "Continue escalation." },
+        { "stepNumber": 4, "rateMlHr": 200, "durationMinutes": 0, "triggerCondition": "No reaction after step 3.", "escalationNote": "Max rate. Total ~6.5 hours. Maintain until complete." }
+      ]
+    },
+    {
+      "id": "daratumumab-subsequent",
+      "drugName": "Daratumumab",
+      "brandName": "Darzalex",
+      "genericName": "daratumumab",
+      "indication": "Subsequent infusions (2nd+)",
+      "totalDoseMg": null,
+      "diluentVolumeMl": 500,
+      "diluent": "NS",
+      "premeds": "Methylprednisolone 100mg IV, Acetaminophen 650mg PO, Diphenhydramine 25mg IV — 1 hr prior.",
+      "steps": [
+        { "stepNumber": 1, "rateMlHr": 100, "durationMinutes": 60, "triggerCondition": "Begin infusion. Vitals q30min.", "escalationNote": "If tolerated, escalate." },
+        { "stepNumber": 2, "rateMlHr": 200, "durationMinutes": 0, "triggerCondition": "No reaction after step 1.", "escalationNote": "Max rate. Total ~3.5 hours. Maintain until complete." }
       ]
     }
   ]
