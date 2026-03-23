@@ -114,9 +114,9 @@ export function TitrationSchedulePanel() {
         <div>
           <div className="flex items-baseline gap-2">
             <h2 className="text-lg font-bold text-[#4E6F4E]">{protocol.brandName || protocol.drugName}</h2>
-            {protocol.brandName && <span className="text-sm text-[#8AB78A]">({protocol.drugName})</span>}
+            {protocol.brandName && <span className="text-sm text-[#5A7A5A]">({protocol.drugName})</span>}
           </div>
-          {protocol.genericName && <p className="text-xs text-[#8AB78A] italic">{protocol.genericName}</p>}
+          {protocol.genericName && <p className="text-xs text-[#5A7A5A] italic">{protocol.genericName}</p>}
           <p className="text-sm text-gray-500">{protocol.indication}</p>
         </div>
         <Button variant="ghost" onClick={() => { if (isRunning || completedSteps.length > 0) { setShowStopConfirm(true); } else { resetTitration(); } }} size="sm">Change Protocol</Button>
@@ -152,7 +152,7 @@ export function TitrationSchedulePanel() {
                       'w-full min-h-[44px] px-3 py-2',
                       'rounded-xl border border-blue-200 bg-white text-base',
                       'placeholder:text-blue-300',
-                      'focus:outline-none focus:ring-2 focus:ring-[#8AB78A]'
+                      'focus:outline-none focus:ring-2 focus:ring-[#4E6F4E]'
                     )}
                     min="1"
                     max={weightUnit === 'kg' ? '500' : '1100'}
@@ -194,15 +194,15 @@ export function TitrationSchedulePanel() {
                 <div>
                   <p className="text-sm text-[#4E6F4E]">
                     Patient weight: <strong>{patientWeightKg} kg</strong>
-                    <span className="text-[#8AB78A] ml-1">({Math.round(patientWeightKg! * 2.205)} lbs)</span>
+                    <span className="text-[#5A7A5A] ml-1">({Math.round(patientWeightKg! * 2.205)} lbs)</span>
                   </p>
-                  <p className="text-xs text-[#8AB78A] mt-0.5">
+                  <p className="text-xs text-[#5A7A5A] mt-0.5">
                     Rates below are calculated as mL/kg/hr × {patientWeightKg} kg
                   </p>
                 </div>
                 <button
                   onClick={handleWeightClear}
-                  className="text-xs text-[#8AB78A] hover:text-[#4E6F4E] min-h-[44px] px-3"
+                  className="text-xs text-[#5A7A5A] hover:text-[#4E6F4E] min-h-[44px] px-3"
                 >
                   Change weight
                 </button>
@@ -223,7 +223,7 @@ export function TitrationSchedulePanel() {
                     {effectiveSteps.map((step) => (
                       <tr key={step.stepNumber} className="border-t border-[#C1E1B1]/50">
                         <td className="py-1.5 px-2 text-gray-700">Step {step.stepNumber}</td>
-                        <td className="py-1.5 px-2 text-right text-[#8AB78A] font-medium">{step.rateMlKgHr ?? '—'}</td>
+                        <td className="py-1.5 px-2 text-right text-[#5A7A5A] font-medium">{step.rateMlKgHr ?? '—'}</td>
                         <td className="py-1.5 px-2 text-right font-bold text-[#4E6F4E]">{step.effectiveRateMlHr}</td>
                         <td className="py-1.5 px-2 text-right text-gray-500">{step.durationMinutes > 0 ? `${step.durationMinutes} min` : '→ done'}</td>
                       </tr>
@@ -265,14 +265,14 @@ export function TitrationSchedulePanel() {
               ) : (
                 <Card className={cn('flex items-center gap-3 py-3', isCompleted && 'border-l-4 border-l-green-600 bg-green-50', isActive && 'border-l-4 border-l-[#4E6F4E] bg-[#E9F5E1]', isUpcoming && 'border-l-4 border-l-gray-300 opacity-60')} padding="sm">
                   <div className="shrink-0">
-                    {isCompleted ? <CheckCircle size={22} className="text-green-600" /> : isActive ? <Clock size={22} className="text-[#4E6F4E]" /> : <ChevronRight size={22} className="text-gray-400" />}
+                    {isCompleted ? <CheckCircle size={22} className="text-green-600" /> : isActive ? <Clock size={22} className="text-[#4E6F4E]" /> : <ChevronRight size={22} className="text-gray-500" />}
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className={cn('text-sm font-semibold', isCompleted && 'text-green-800', isActive && 'text-[#4E6F4E]', isUpcoming && 'text-gray-500')}>
                       Step {step.stepNumber}: {rateLabel} mL/hr{step.durationMinutes > 0 ? ` \u00d7 ${step.durationMinutes} min` : ' \u2014 until complete'}
                     </p>
                     {weightSuffix && (
-                      <p className={cn('text-xs font-medium mt-0.5', isCompleted ? 'text-green-600' : isActive ? 'text-[#8AB78A]' : 'text-gray-400')}>
+                      <p className={cn('text-xs font-medium mt-0.5', isCompleted ? 'text-green-600' : isActive ? 'text-[#5A7A5A]' : 'text-gray-500')}>
                         {weightSuffix}
                       </p>
                     )}
@@ -307,7 +307,7 @@ export function TitrationSchedulePanel() {
 
       {/* Summary footer */}
       {!protocolComplete && completedSteps.length > 0 && (
-        <div className="flex items-center justify-between text-sm text-[#8AB78A] px-1">
+        <div className="flex items-center justify-between text-sm text-[#5A7A5A] px-1">
           <span>Steps: {completedSteps.length} / {protocol.steps.length}</span>
           <span>Elapsed: {formatDuration(totalElapsed)}</span>
           <span>Vol: ~{roundClinical(completedSteps.reduce((sum, s) => sum + (s.rateMlHr * s.durationMinutes) / 60, 0))} mL</span>

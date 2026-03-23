@@ -37,12 +37,12 @@ export default function HistoryPage() {
       </div>
 
       {isLoading ? (
-        <div className="text-center py-12 text-gray-400">Loading...</div>
+        <div className="text-center py-12 text-gray-500">Loading...</div>
       ) : sessions.length === 0 ? (
         <div className="text-center py-12">
           <Clock size={40} className="mx-auto text-gray-300 mb-3" />
           <p className="text-gray-500">No previous sessions</p>
-          <p className="text-xs text-gray-400 mt-1">Sessions will appear here after assessment</p>
+          <p className="text-xs text-gray-500 mt-1">Sessions will appear here after assessment</p>
         </div>
       ) : (
         <div className="space-y-3">
@@ -63,7 +63,7 @@ export default function HistoryPage() {
                   <p className="text-sm font-medium text-gray-700">
                     Grade {session.finalGrade}
                   </p>
-                  <p className="text-xs text-gray-400">
+                  <p className="text-xs text-gray-500">
                     {session.actionsTaken.length} actions
                   </p>
                 </div>

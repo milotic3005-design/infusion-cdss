@@ -5,8 +5,10 @@
   /* Matcha Palette */
   --matcha-light: #E9F5E1;
   --matcha-pastel: #C1E1B1;
-  --matcha-medium: #8AB78A;
-  --matcha-dark: #4E6F4E;
+  --matcha-medium: #8AB78A;        /* decorative/borders/icons only */
+  --matcha-dark: #4E6F4E;          /* primary headings, CTAs */
+  --matcha-deeper: #3A5A3A;        /* hover states, extra depth */
+  --matcha-text: #5A7A5A;          /* body/secondary readable text — 4.7:1 on white ✅ */
   --cream-white: #FAFAF5;
 
   --background: #FAFAF5;
@@ -22,7 +24,8 @@
   /* Surface colors */
   --surface: #ffffff;
   --surface-elevated: #ffffff;
-  --border-subtle: rgba(138, 183, 138, 0.2);
+  --border-subtle: rgba(78, 111, 78, 0.18);  /* slightly stronger border visibility */
+  --border-card: #B8D4B8;                     /* card borders — more defined */
 }
 
 @theme inline {
@@ -78,7 +81,7 @@ body {
 
 /* Focus-visible for plain buttons (non-ui Button) */
 button:focus-visible {
-  outline: 2px solid #8AB78A;
+  outline: 2px solid #4E6F4E;
   outline-offset: 2px;
   border-radius: 4px;
 }

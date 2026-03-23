@@ -50,7 +50,7 @@ export function DrugSearchInput({ onSearch, onClear, isLoading, initialValue = '
 
   return (
     <div className="relative">
-      <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+      <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500">
         <Search size={20} aria-hidden="true" />
       </div>
       <input
@@ -74,7 +74,7 @@ export function DrugSearchInput({ onSearch, onClear, isLoading, initialValue = '
       {value && (
         <button
           onClick={handleClear}
-          className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 p-1 rounded-full"
+          className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-600 p-1 rounded-full"
           aria-label="Clear search"
         >
           <X size={18} />

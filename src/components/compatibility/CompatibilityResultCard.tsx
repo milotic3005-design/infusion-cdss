@@ -23,7 +23,7 @@ export function CompatibilityResultCard() {
     return (
       <div aria-live="polite" className="mt-6">
         <Card className="border-dashed border-[#C1E1B1] bg-[#FAFAF5] text-center py-8">
-          <p className="text-[#8AB78A] text-base">Select two drugs above and check compatibility to see results.</p>
+          <p className="text-[#5A7A5A] text-base">Select two drugs above and check compatibility to see results.</p>
         </Card>
       </div>
     );
@@ -65,7 +65,7 @@ export function CompatibilityResultCard() {
           )}
           {entry.references && entry.references.length > 0 && (
             <div className="mt-2 pt-2 border-t border-[#C1E1B1]/30">
-              <p className="text-xs text-[#8AB78A]">{entry.references.join('; ')}</p>
+              <p className="text-xs text-[#5A7A5A]">{entry.references.join('; ')}</p>
             </div>
           )}
         </Card>
@@ -77,7 +77,7 @@ export function CompatibilityResultCard() {
 function DetailRow({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <span className="block text-xs text-[#8AB78A] font-medium uppercase tracking-wide">{label}</span>
+      <span className="block text-xs text-[#5A7A5A] font-medium uppercase tracking-wide">{label}</span>
       <span className="block text-gray-800 font-medium">{value || '—'}</span>
     </div>
   );

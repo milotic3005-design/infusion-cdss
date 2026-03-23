@@ -27,7 +27,7 @@ export function DrugSearchCard({ drug, profile, isLoading, compact }: DrugSearch
             </p>
           )}
           {drug.drugClasses.length > 0 && (
-            <p className="text-xs text-gray-400 mt-0.5">
+            <p className="text-xs text-gray-500 mt-0.5">
               {drug.drugClasses.map((c) => c.className).join(', ')}
             </p>
           )}

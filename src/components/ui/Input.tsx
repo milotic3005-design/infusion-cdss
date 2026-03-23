@@ -31,7 +31,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             className={cn(
               'w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5',
               'text-base text-gray-900 placeholder:text-gray-400',
-              'focus:border-[#8AB78A] focus:outline-none focus:ring-2 focus:ring-[#8AB78A]/20',
+              'focus:border-[#8AB78A] focus:outline-none focus:ring-2 focus:ring-[#4E6F4E]/20',
               'transition-colors',
               error && 'border-red-400 focus:border-red-500 focus:ring-red-500/20',
               unit && 'pr-12',
@@ -40,7 +40,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             {...props}
           />
           {unit && (
-            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-gray-400">
+            <span className="absolute right-3 top-1/2 -translate-y-1/2 text-sm text-gray-500">
               {unit}
             </span>
           )}

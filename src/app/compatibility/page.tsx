@@ -15,7 +15,7 @@ export default function CompatibilityPage() {
   return (
     <div className="flex flex-col items-center pt-4 md:pt-8">
       <div className="w-full max-w-2xl mb-4">
-        <Link href="/" className="inline-flex items-center gap-1.5 text-sm text-[#8AB78A] hover:text-[#4E6F4E] transition-colors min-h-[44px]">
+        <Link href="/" className="inline-flex items-center gap-1.5 text-sm text-[#5A7A5A] hover:text-[#4E6F4E] transition-colors min-h-[44px]">
           <ArrowLeft size={16} /> Back to Home
         </Link>
       </div>
@@ -25,7 +25,7 @@ export default function CompatibilityPage() {
           <ShieldCheck size={24} className="text-[#4E6F4E]" />
           <h1 className="text-xl md:text-2xl font-bold text-[#4E6F4E]">Y-Site IV Compatibility Checker</h1>
         </div>
-        <p className="text-[#8AB78A] text-sm">Select two IV drugs to check Y-site compatibility based on Trissel&apos;s classification.</p>
+        <p className="text-[#5A7A5A] text-sm">Select two IV drugs to check Y-site compatibility based on Trissel&apos;s classification.</p>
       </div>
 
       <GlassPanel className="w-full max-w-2xl p-6 md:p-8" intensity="medium">
@@ -33,7 +33,7 @@ export default function CompatibilityPage() {
         <CompatibilityResultCard />
       </GlassPanel>
 
-      <p className="mt-6 text-xs text-[#8AB78A]/70 text-center max-w-sm">
+      <p className="mt-6 text-xs text-[#5A7A5A]/70 text-center max-w-sm">
         Data modeled after Trissel&apos;s Handbook on Injectable Drugs. For educational/demo purposes only.
       </p>
     </div>

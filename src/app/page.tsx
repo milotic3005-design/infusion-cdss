@@ -97,7 +97,7 @@ export default function HomePage() {
             Infusion Reaction Decision Support
           </h1>
         </div>
-        <p className="text-[#8AB78A] text-sm max-w-md">
+        <p className="text-[#5A7A5A] text-sm max-w-md">
           NCI CTCAE v6.0 grading with real-time clinical decision support
         </p>
       </div>
@@ -147,7 +147,7 @@ export default function HomePage() {
               <Syringe size={20} className="text-[#4E6F4E]" />
               <h3 className="font-bold text-[#4E6F4E]">Y-Site Compatibility</h3>
             </div>
-            <p className="text-sm text-[#8AB78A]">Check IV drug Y-site compatibility based on Trissel&apos;s data</p>
+            <p className="text-sm text-[#5A7A5A]">Check IV drug Y-site compatibility based on Trissel&apos;s data</p>
           </GlassPanel>
         </Link>
         <Link href="/titration">
@@ -156,12 +156,12 @@ export default function HomePage() {
               <Timer size={20} className="text-[#4E6F4E]" />
               <h3 className="font-bold text-[#4E6F4E]">Titration Scheduler</h3>
             </div>
-            <p className="text-sm text-[#8AB78A]">Step-wise infusion rate titration with active timers</p>
+            <p className="text-sm text-[#5A7A5A]">Step-wise infusion rate titration with active timers</p>
           </GlassPanel>
         </Link>
       </div>
 
-      <p className="mt-6 text-xs text-[#8AB78A]/70 text-center max-w-sm">
+      <p className="mt-6 text-xs text-[#5A7A5A]/70 text-center max-w-sm">
         Data sourced from RxNorm, openFDA, and DailyMed.
         Always verify with institutional protocols.
       </p>

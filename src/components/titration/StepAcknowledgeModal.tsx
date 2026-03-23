@@ -42,8 +42,8 @@ export function StepAcknowledgeModal({ step, nextStep, isFinalStep, onAcknowledg
               {nextStep && (
                 <div className="bg-[#E9F5E1] rounded-xl p-3 border border-[#C1E1B1]">
                   <p className="text-sm font-semibold text-[#4E6F4E]">Next: Step {nextStep.stepNumber}</p>
-                  <p className="text-sm text-[#8AB78A] mt-0.5">{nextStep.rateMlHr} mL/hr for {nextStep.durationMinutes > 0 ? `${nextStep.durationMinutes} min` : 'until complete'}</p>
-                  <p className="text-xs text-[#8AB78A]/70 mt-1">{nextStep.triggerCondition}</p>
+                  <p className="text-sm text-[#5A7A5A] mt-0.5">{nextStep.rateMlHr} mL/hr for {nextStep.durationMinutes > 0 ? `${nextStep.durationMinutes} min` : 'until complete'}</p>
+                  <p className="text-xs text-[#5A7A5A]/70 mt-1">{nextStep.triggerCondition}</p>
                 </div>
               )}
             </div>
@@ -53,7 +53,7 @@ export function StepAcknowledgeModal({ step, nextStep, isFinalStep, onAcknowledg
           <button
             data-ack-button
             onClick={onAcknowledge}
-            className="w-full min-h-[44px] px-5 py-3 rounded-xl font-semibold text-base bg-[#8AB78A] text-white hover:bg-[#4E6F4E] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8AB78A] focus-visible:ring-offset-2"
+            className="w-full min-h-[44px] px-5 py-3 rounded-xl font-semibold text-base bg-[#8AB78A] text-white hover:bg-[#4E6F4E] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4E6F4E] focus-visible:ring-offset-2"
           >
             {isFinalStep ? 'Acknowledge Completion' : 'Acknowledge & Advance to Next Step'}
           </button>

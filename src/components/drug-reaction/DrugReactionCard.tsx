@@ -33,7 +33,7 @@ export function DrugReactionCard({ protocol, drugName }: DrugReactionCardProps) 
                 <span className="w-1.5 h-1.5 rounded-full bg-purple-400 flex-shrink-0" />
                 <span>
                   <span className="font-medium">{med.medication}</span> {med.dose}
-                  <span className="text-gray-400"> — {med.timing}</span>
+                  <span className="text-gray-500"> — {med.timing}</span>
                 </span>
               </li>
             ))}

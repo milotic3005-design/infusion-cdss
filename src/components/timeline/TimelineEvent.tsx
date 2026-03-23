@@ -13,7 +13,7 @@ export function TimelineEvent({ event }: TimelineEventProps) {
 
   return (
     <div className="flex flex-col items-center min-w-[100px]">
-      <span className="text-[10px] text-gray-400 mb-1">
+      <span className="text-[10px] text-gray-500 mb-1">
         {formatTimestamp(event.timestamp)}
       </span>
       <div

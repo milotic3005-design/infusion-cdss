@@ -80,8 +80,8 @@ export function CompatibilityDrugAutocomplete({ label, id, selectedDrug, onSelec
         <label className="mb-1.5 block text-sm font-medium text-[#4E6F4E]">{label}</label>
         <div className="flex items-center gap-2 min-h-[44px] px-4 py-2 rounded-xl border border-[#8AB78A] bg-[#E9F5E1]">
           <span className="flex-1 text-base font-medium text-[#4E6F4E] truncate">{selectedDrug.name}</span>
-          <span className="text-xs text-[#8AB78A] hidden sm:inline truncate max-w-[120px]">{selectedDrug.genericName}</span>
-          <button onClick={handleClear} className="min-h-[44px] min-w-[44px] flex items-center justify-center text-[#8AB78A] hover:text-[#4E6F4E] transition-colors" aria-label={`Remove ${selectedDrug.name}`}>
+          <span className="text-xs text-[#5A7A5A] hidden sm:inline truncate max-w-[120px]">{selectedDrug.genericName}</span>
+          <button onClick={handleClear} className="min-h-[44px] min-w-[44px] flex items-center justify-center text-[#5A7A5A] hover:text-[#4E6F4E] transition-colors" aria-label={`Remove ${selectedDrug.name}`}>
             <X size={20} />
           </button>
         </div>
@@ -93,7 +93,7 @@ export function CompatibilityDrugAutocomplete({ label, id, selectedDrug, onSelec
     <div ref={containerRef} className="relative w-full">
       <label htmlFor={id} className="mb-1.5 block text-sm font-medium text-[#4E6F4E]">{label}</label>
       <div className="relative">
-        <div className="absolute left-3 top-1/2 -translate-y-1/2 text-[#8AB78A] pointer-events-none">
+        <div className="absolute left-3 top-1/2 -translate-y-1/2 text-[#5A7A5A] pointer-events-none">
           <Search size={18} aria-hidden="true" />
         </div>
         <input
@@ -113,8 +113,8 @@ export function CompatibilityDrugAutocomplete({ label, id, selectedDrug, onSelec
           className={cn(
             'w-full min-h-[44px] pl-10 pr-4 py-2.5',
             'rounded-xl border border-[#C1E1B1] text-base bg-white',
-            'placeholder:text-[#8AB78A]/60',
-            'focus:outline-none focus:ring-2 focus:ring-[#8AB78A] focus:border-[#8AB78A]',
+            'placeholder:text-[#5A7A5A]/60',
+            'focus:outline-none focus:ring-2 focus:ring-[#4E6F4E] focus:border-[#8AB78A]',
             'transition-colors duration-150'
           )}
         />
@@ -135,7 +135,7 @@ export function CompatibilityDrugAutocomplete({ label, id, selectedDrug, onSelec
             >
               <div className="min-w-0">
                 <span className="font-medium">{drug.name}</span>
-                <span className="text-xs text-[#8AB78A] ml-1.5">{drug.genericName}</span>
+                <span className="text-xs text-[#5A7A5A] ml-1.5">{drug.genericName}</span>
               </div>
             </li>
           ))}

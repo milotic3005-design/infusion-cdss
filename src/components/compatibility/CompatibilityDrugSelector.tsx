@@ -23,7 +23,7 @@ export function CompatibilityDrugSelector() {
           <CompatibilityDrugAutocomplete label="Drug A (Line 1)" id="drug-a-search" selectedDrug={drugA} onSelect={selectDrugA} onClear={clearDrugA} />
         </div>
         <div className="flex items-end justify-center sm:pb-0.5">
-          <button onClick={swapDrugs} disabled={!drugA && !drugB} className="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-xl text-[#8AB78A] hover:text-[#4E6F4E] hover:bg-[#E9F5E1] disabled:opacity-30 disabled:cursor-not-allowed transition-colors" aria-label="Swap drugs">
+          <button onClick={swapDrugs} disabled={!drugA && !drugB} className="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-xl text-[#5A7A5A] hover:text-[#4E6F4E] hover:bg-[#E9F5E1] disabled:opacity-30 disabled:cursor-not-allowed transition-colors" aria-label="Swap drugs">
             <ArrowRightLeft size={22} />
           </button>
         </div>

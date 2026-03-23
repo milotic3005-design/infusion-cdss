@@ -138,23 +138,23 @@ export function ProtocolSelector({ onSelect }: Props) {
       {/* Built-in protocols */}
       <div>
         <h2 className="text-lg font-bold text-[#4E6F4E] mb-1">Select Titration Protocol</h2>
-        <p className="text-xs text-[#8AB78A] mb-3">{protocols.length} built-in protocols available</p>
+        <p className="text-xs text-[#5A7A5A] mb-3">{protocols.length} built-in protocols available</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {visibleGroups.map(([, groupProtos]) =>
             groupProtos.map((protocol) => (
               <button
                 key={protocol.id}
                 onClick={() => onSelect(protocol)}
-                className="text-left w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8AB78A] rounded-2xl"
+                className="text-left w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4E6F4E] rounded-2xl"
               >
                 <Card className={cn('cursor-pointer hover:border-[#8AB78A] hover:shadow-md transition-all duration-150 min-h-[44px]')}>
                   <div className="flex items-baseline gap-2">
                     <h3 className="font-bold text-gray-800 text-sm">{protocol.brandName || protocol.drugName}</h3>
-                    {protocol.brandName && <span className="text-xs text-[#8AB78A] font-medium">({protocol.drugName})</span>}
+                    {protocol.brandName && <span className="text-xs text-[#5A7A5A] font-medium">({protocol.drugName})</span>}
                   </div>
-                  <p className="text-xs text-gray-400 mt-0.5 italic">{protocol.genericName}</p>
+                  <p className="text-xs text-gray-500 mt-0.5 italic">{protocol.genericName}</p>
                   <p className="text-xs text-gray-500 mt-1">{protocol.indication}</p>
-                  <div className="flex gap-3 mt-2 text-xs text-[#8AB78A]">
+                  <div className="flex gap-3 mt-2 text-xs text-[#5A7A5A]">
                     <span>{protocol.steps.length} step{protocol.steps.length > 1 ? 's' : ''}</span>
                     <span>{protocol.diluentVolumeMl} mL {protocol.diluent}</span>
                   </div>
@@ -168,7 +168,7 @@ export function ProtocolSelector({ onSelect }: Props) {
           <div className="flex justify-center mt-3">
             <button
               onClick={() => setShowAllBuiltIn(!showAllBuiltIn)}
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-[#4E6F4E] hover:text-[#8AB78A] min-h-[44px] px-4 transition-colors"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-[#4E6F4E] hover:text-[#5A7A5A] min-h-[44px] px-4 transition-colors"
             >
               {showAllBuiltIn ? (
                 <><ChevronUp size={16} /> Show fewer protocols</>
@@ -183,7 +183,7 @@ export function ProtocolSelector({ onSelect }: Props) {
       {/* Divider */}
       <div className="flex items-center gap-3">
         <div className="flex-1 h-px bg-[#C1E1B1]" />
-        <span className="text-xs text-[#8AB78A] font-medium uppercase tracking-wider">or</span>
+        <span className="text-xs text-[#5A7A5A] font-medium uppercase tracking-wider">or</span>
         <div className="flex-1 h-px bg-[#C1E1B1]" />
       </div>
 
@@ -193,23 +193,23 @@ export function ProtocolSelector({ onSelect }: Props) {
           <Button variant="secondary" onClick={() => setShowSearch(true)} icon={<Search size={16} />}>
             Search Any Drug via FDA Database
           </Button>
-          <p className="text-xs text-[#8AB78A]/70 mt-2">
+          <p className="text-xs text-[#5A7A5A]/70 mt-2">
             Look up any IV drug and auto-generate a titration protocol from FDA label data
           </p>
         </div>
       ) : (
         <Card className="border-[#8AB78A]/50 bg-[#E9F5E1]/30">
           <h3 className="font-semibold text-[#4E6F4E] mb-3 flex items-center gap-2">
-            <ExternalLink size={16} className="text-[#8AB78A]" />
+            <ExternalLink size={16} className="text-[#5A7A5A]" />
             Search FDA Drug Database
           </h3>
-          <p className="text-xs text-[#8AB78A] mb-3">
+          <p className="text-xs text-[#5A7A5A] mb-3">
             Search by generic or brand name. The system will fetch FDA label data and generate a conservative titration schedule.
           </p>
 
           {/* Search input */}
           <div className="relative mb-3">
-            <div className="absolute left-3 top-1/2 -translate-y-1/2 text-[#8AB78A] pointer-events-none">
+            <div className="absolute left-3 top-1/2 -translate-y-1/2 text-[#5A7A5A] pointer-events-none">
               <Search size={16} aria-hidden="true" />
             </div>
             <input
@@ -220,14 +220,14 @@ export function ProtocolSelector({ onSelect }: Props) {
               className={cn(
                 'w-full min-h-[44px] pl-9 pr-4 py-2.5',
                 'rounded-xl border border-[#C1E1B1] bg-white text-base',
-                'placeholder:text-[#8AB78A]/50',
-                'focus:outline-none focus:ring-2 focus:ring-[#8AB78A]'
+                'placeholder:text-[#5A7A5A]/50',
+                'focus:outline-none focus:ring-2 focus:ring-[#4E6F4E]'
               )}
               aria-label="Search drug by name"
             />
             {isSearching && (
               <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                <Loader2 size={18} className="animate-spin text-[#8AB78A]" />
+                <Loader2 size={18} className="animate-spin text-[#5A7A5A]" />
               </div>
             )}
           </div>
@@ -247,7 +247,7 @@ export function ProtocolSelector({ onSelect }: Props) {
                 >
                   <div>
                     <span className="text-sm font-medium text-gray-800">{drug.name}</span>
-                    <span className="text-xs text-[#8AB78A] ml-2">
+                    <span className="text-xs text-[#5A7A5A] ml-2">
                       {drug.tty === 'BN' ? 'Brand' : drug.tty === 'IN' ? 'Ingredient' : drug.tty}
                     </span>
                   </div>
@@ -288,7 +288,7 @@ export function ProtocolSelector({ onSelect }: Props) {
           <div className="mt-3 text-center">
             <button
               onClick={() => { setShowSearch(false); handleResetSearch(); }}
-              className="text-sm text-[#8AB78A] hover:text-[#4E6F4E] min-h-[44px] px-4"
+              className="text-sm text-[#5A7A5A] hover:text-[#4E6F4E] min-h-[44px] px-4"
             >
               Close search
             </button>
@@ -410,11 +410,11 @@ function GeneratedProtocolCard({ label, onSelect, onReset }: { label: FdaLabel; 
           </div>
         </Card>
         <div className="flex justify-center gap-3">
-          <button onClick={() => setShowDetails(!showDetails)} className="text-xs text-[#4E6F4E] hover:text-[#8AB78A] min-h-[44px] px-4 inline-flex items-center gap-1">
+          <button onClick={() => setShowDetails(!showDetails)} className="text-xs text-[#4E6F4E] hover:text-[#5A7A5A] min-h-[44px] px-4 inline-flex items-center gap-1">
             <ExternalLink size={12} />
             {showDetails ? 'Hide FDA Label' : 'View FDA Label'}
           </button>
-          <button onClick={onReset} className="text-xs text-[#8AB78A] hover:text-[#4E6F4E] min-h-[44px] px-4">Search again</button>
+          <button onClick={onReset} className="text-xs text-[#5A7A5A] hover:text-[#4E6F4E] min-h-[44px] px-4">Search again</button>
         </div>
         {showDetails && <FdaLabelDetails label={label} />}
       </div>
@@ -427,7 +427,7 @@ function GeneratedProtocolCard({ label, onSelect, onReset }: { label: FdaLabel; 
     <div className="space-y-3">
       <button
         onClick={() => onSelect(protocol)}
-        className="text-left w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8AB78A] rounded-2xl"
+        className="text-left w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#4E6F4E] rounded-2xl"
       >
         <Card className={cn('cursor-pointer hover:border-[#8AB78A] hover:shadow-md transition-all duration-150 border-[#8AB78A]/50 bg-[#E9F5E1]/40')}>
           <div className="flex items-center gap-2 mb-1">
@@ -436,14 +436,14 @@ function GeneratedProtocolCard({ label, onSelect, onReset }: { label: FdaLabel; 
           </div>
           <div className="flex items-baseline gap-2">
             <h3 className="font-bold text-gray-800">{protocol.brandName || protocol.drugName}</h3>
-            {protocol.brandName && <span className="text-xs text-[#8AB78A] font-medium">({protocol.drugName})</span>}
+            {protocol.brandName && <span className="text-xs text-[#5A7A5A] font-medium">({protocol.drugName})</span>}
           </div>
-          {label.manufacturer && <p className="text-xs text-gray-400 mt-0.5">{label.manufacturer}</p>}
+          {label.manufacturer && <p className="text-xs text-gray-500 mt-0.5">{label.manufacturer}</p>}
           <div className="flex flex-wrap gap-2 mt-1.5">
             {label.route && <span className="text-xs bg-[#E9F5E1] text-[#4E6F4E] px-2 py-0.5 rounded-full font-medium">{label.route}</span>}
             {label.dosageForm && <span className="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full font-medium">{label.dosageForm}</span>}
           </div>
-          <div className="flex gap-3 mt-2 text-xs text-[#8AB78A]">
+          <div className="flex gap-3 mt-2 text-xs text-[#5A7A5A]">
             <span>{protocol.steps.length} steps</span>
             <span>{protocol.diluentVolumeMl} mL in {protocol.diluent}</span>
           </div>
@@ -454,11 +454,11 @@ function GeneratedProtocolCard({ label, onSelect, onReset }: { label: FdaLabel; 
       </button>
 
       <div className="flex justify-center gap-3">
-        <button onClick={() => setShowDetails(!showDetails)} className="text-xs text-[#4E6F4E] hover:text-[#8AB78A] min-h-[44px] px-4 inline-flex items-center gap-1">
+        <button onClick={() => setShowDetails(!showDetails)} className="text-xs text-[#4E6F4E] hover:text-[#5A7A5A] min-h-[44px] px-4 inline-flex items-center gap-1">
           <ExternalLink size={12} />
           {showDetails ? 'Hide FDA Label Details' : 'View FDA Label Details'}
         </button>
-        <button onClick={onReset} className="text-xs text-[#8AB78A] hover:text-[#4E6F4E] min-h-[44px] px-4">Search again</button>
+        <button onClick={onReset} className="text-xs text-[#5A7A5A] hover:text-[#4E6F4E] min-h-[44px] px-4">Search again</button>
       </div>
       {showDetails && <FdaLabelDetails label={label} />}
 
@@ -479,8 +479,8 @@ function FdaLabelDetails({ label }: { label: FdaLabel }) {
       {label.dosageAndAdministration && <LabelSection title="Dosage & Administration" content={label.dosageAndAdministration} />}
       {label.warnings && <LabelSection title="Warnings" content={label.warnings} isWarning />}
       <div className="mt-3 pt-3 border-t border-[#C1E1B1]/30 flex items-center gap-1.5">
-        <ExternalLink size={12} className="text-[#8AB78A]" />
-        <span className="text-xs text-[#8AB78A]">Source: {label.source} | RxCUI: {label.rxcui}</span>
+        <ExternalLink size={12} className="text-[#5A7A5A]" />
+        <span className="text-xs text-[#5A7A5A]">Source: {label.source} | RxCUI: {label.rxcui}</span>
       </div>
     </Card>
   );
@@ -493,13 +493,13 @@ function LabelSection({ title, content, isWarning = false }: { title: string; co
 
   return (
     <div className={cn('mt-2 pt-2 border-t border-[#C1E1B1]/30', isWarning && 'bg-red-50 -mx-5 px-5 py-2 border-t-red-100')}>
-      <p className={cn('text-xs font-semibold uppercase tracking-wide mb-1', isWarning ? 'text-red-700' : 'text-[#8AB78A]')}>{title}</p>
+      <p className={cn('text-xs font-semibold uppercase tracking-wide mb-1', isWarning ? 'text-red-700' : 'text-[#5A7A5A]')}>{title}</p>
       <p className={cn('text-sm leading-relaxed', isWarning ? 'text-red-800' : 'text-gray-700')}>
         {displayText}
         {needsTruncation && !expanded && '...'}
       </p>
       {needsTruncation && (
-        <button onClick={() => setExpanded(!expanded)} className="text-xs text-[#4E6F4E] hover:text-[#8AB78A] mt-1 min-h-[44px] flex items-center">
+        <button onClick={() => setExpanded(!expanded)} className="text-xs text-[#4E6F4E] hover:text-[#5A7A5A] mt-1 min-h-[44px] flex items-center">
           {expanded ? 'Show less' : 'Show more'}
         </button>
       )}
