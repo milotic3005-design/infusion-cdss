@@ -40,10 +40,12 @@ export function computeGrade(
 
   if (vitals.temperature !== undefined) {
     if (vitals.temperature > VITAL_THRESHOLDS.temperature.grade3) {
-      vitalFlags.push({ parameter: 'temperature', value: vitals.temperature, threshold: '>39.5°C', escalatesTo: 3 });
+      // CTCAE Grade 3: >40.0°C
+      vitalFlags.push({ parameter: 'temperature', value: vitals.temperature, threshold: '>40°C', escalatesTo: 3 });
       vitalMaxGrade = Math.max(vitalMaxGrade, 3) as CTCAEGradeNumber;
-    } else if (vitals.temperature > VITAL_THRESHOLDS.temperature.grade2) {
-      vitalFlags.push({ parameter: 'temperature', value: vitals.temperature, threshold: '>38°C', escalatesTo: 2 });
+    } else if (vitals.temperature >= VITAL_THRESHOLDS.temperature.grade2) {
+      // CTCAE Grade 2: ≥38.0°C (inclusive per CTCAE v5/v6 fever definition)
+      vitalFlags.push({ parameter: 'temperature', value: vitals.temperature, threshold: '≥38°C', escalatesTo: 2 });
       vitalMaxGrade = Math.max(vitalMaxGrade, 2) as CTCAEGradeNumber;
     }
   }

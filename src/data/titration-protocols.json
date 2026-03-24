@@ -54,7 +54,8 @@
         { "stepNumber": 3, "rateMlHr": 40, "durationMinutes": 15, "triggerCondition": "No reaction after step 2.", "escalationNote": "Continue escalation." },
         { "stepNumber": 4, "rateMlHr": 80, "durationMinutes": 15, "triggerCondition": "No reaction after step 3.", "escalationNote": "Continue toward max." },
         { "stepNumber": 5, "rateMlHr": 150, "durationMinutes": 15, "triggerCondition": "No reaction after step 4.", "escalationNote": "Approaching max rate." },
-        { "stepNumber": 6, "rateMlHr": 250, "durationMinutes": 0, "triggerCondition": "No reaction after step 5.", "escalationNote": "Max rate. Total time ≥2 hours." }
+        { "stepNumber": 6, "rateMlHr": 200, "durationMinutes": 15, "triggerCondition": "No reaction after step 5.", "escalationNote": "Intermediate step — consistent with 15–30 mL/hr escalation pattern." },
+        { "stepNumber": 7, "rateMlHr": 250, "durationMinutes": 0, "triggerCondition": "No reaction after step 6.", "escalationNote": "Max rate. Total time ≥2 hours." }
       ]
     },
     {
@@ -370,7 +371,7 @@
       "diluent": "NS",
       "premeds": "Ondansetron 8mg IV if nausea history. Dexamethasone 4mg IV optional.",
       "steps": [
-        { "stepNumber": 1, "rateMlHr": 500, "durationMinutes": 30, "triggerCondition": "Begin infusion. Target 30-minute infusion (10 mg/m²/min rate). Vitals at baseline and 15 min.", "escalationNote": "Fixed-rate infusion over 30 min. Do NOT exceed 30 min total." }
+        { "stepNumber": 1, "rateMlHr": 500, "durationMinutes": 30, "triggerCondition": "Begin infusion. Target exactly 30-minute infusion (10 mg/m²/min rate). Vitals at baseline and 15 min.", "escalationNote": "Fixed-rate infusion: administer over exactly 30 minutes. Infusion time >60 minutes increases toxicity; do not extend beyond 60 min." }
       ]
     },
     {
@@ -460,7 +461,8 @@
         { "stepNumber": 1, "rateMlHr": 50, "durationMinutes": 60, "triggerCondition": "Begin infusion. Monitor vitals q15min. High infusion reaction risk (~50%).", "escalationNote": "If tolerated 1 hr, escalate." },
         { "stepNumber": 2, "rateMlHr": 100, "durationMinutes": 60, "triggerCondition": "No reaction after step 1.", "escalationNote": "If tolerated, escalate." },
         { "stepNumber": 3, "rateMlHr": 150, "durationMinutes": 60, "triggerCondition": "No reaction after step 2.", "escalationNote": "Continue escalation." },
-        { "stepNumber": 4, "rateMlHr": 200, "durationMinutes": 0, "triggerCondition": "No reaction after step 3.", "escalationNote": "Max rate. Total ~6.5 hours. Maintain until complete." }
+        { "stepNumber": 4, "rateMlHr": 200, "durationMinutes": 0, "triggerCondition": "No reaction after step 3.", "escalationNote": "Max rate. Total ~6.5 hours. Maintain until complete." },
+        { "stepNumber": 5, "rateMlHr": 0, "durationMinutes": 30, "triggerCondition": "Infusion complete.", "escalationNote": "MANDATORY 30-min post-infusion observation per Darzalex label. Delayed reactions reported. Patient must remain in clinic." }
       ]
     },
     {
@@ -475,7 +477,8 @@
       "premeds": "Methylprednisolone 100mg IV, Acetaminophen 650mg PO, Diphenhydramine 25mg IV — 1 hr prior.",
       "steps": [
         { "stepNumber": 1, "rateMlHr": 100, "durationMinutes": 60, "triggerCondition": "Begin infusion. Vitals q30min.", "escalationNote": "If tolerated, escalate." },
-        { "stepNumber": 2, "rateMlHr": 200, "durationMinutes": 0, "triggerCondition": "No reaction after step 1.", "escalationNote": "Max rate. Total ~3.5 hours. Maintain until complete." }
+        { "stepNumber": 2, "rateMlHr": 200, "durationMinutes": 0, "triggerCondition": "No reaction after step 1.", "escalationNote": "Max rate. Total ~3.5 hours. Maintain until complete." },
+        { "stepNumber": 3, "rateMlHr": 0, "durationMinutes": 30, "triggerCondition": "Infusion complete.", "escalationNote": "MANDATORY 30-min post-infusion observation per Darzalex label. Patient must remain in clinic." }
       ]
     },
     {

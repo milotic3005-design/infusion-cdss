@@ -215,9 +215,20 @@ export function findDrugOverride(
   _rxcui?: string
 ): DrugOverrideConfig | null {
   const normalized = genericName.toLowerCase().trim();
+
+  // Use exact match or word-boundary prefix to prevent partial-name collisions.
+  // e.g. "nab-paclitaxel" must NOT match the "paclitaxel" override (different reaction profile).
+  // e.g. "trastuzumab pertuzumab" (Phesgo) must NOT match "trastuzumab" alone.
+  const isExactOrPrefixMatch = (candidate: string): boolean => {
+    if (normalized === candidate) return true;
+    // Allow "rituximab-pvvr" biosimilar variants that start with the INN
+    if (normalized.startsWith(candidate + '-')) return true;
+    return false;
+  };
+
   return (
     DRUG_OVERRIDES.find((override) =>
-      override.matchGenericNames.some((name) => normalized.includes(name))
+      override.matchGenericNames.some(isExactOrPrefixMatch)
     ) || null
   );
 }

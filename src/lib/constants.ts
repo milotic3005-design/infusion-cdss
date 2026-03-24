@@ -100,9 +100,12 @@ export const COMMON_INFUSION_DRUGS = [
 // Debounce delay for drug search input
 export const SEARCH_DEBOUNCE_MS = 300;
 
+// Weight conversion — USP standard (exact pharmacopeial value)
+export const LBS_PER_KG = 2.20462;
+
 // Vital sign thresholds for grade escalation
 export const VITAL_THRESHOLDS = {
-  temperature: { grade2: 38.0, grade3: 39.5 },
+  temperature: { grade2: 38.0, grade3: 40.0 },  // CTCAE v5/v6: G1=38–39°C, G2=>39–40°C, G3=>40°C
   heartRate: { grade2: 120, grade3: 150 },
   systolicBP: { grade2: 90, grade3: 70 },  // below these values
   spO2: { grade2: 94, grade3: 88 },        // below these values

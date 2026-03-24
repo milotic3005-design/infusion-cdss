@@ -61,17 +61,17 @@ function buildActions(grade: CTCAEGradeNumber, protocol: ReactionProfile['protoc
       return [
         { id: 'a3-1', order: 1, action: 'Stop Infusion Now', detail: 'Immediately discontinue the infusion', icon: 'octagon', urgency: 'immediate', grade: 3 },
         { id: 'a3-2', order: 2, action: 'Notify Physician', detail: 'Contact attending physician immediately', icon: 'phone', urgency: 'immediate', grade: 3 },
-        { id: 'a3-3', order: 3, action: 'Emergency Treatment', detail: 'O2, IV fluids, epinephrine standby, bronchodilators PRN', icon: 'syringe', urgency: 'immediate', grade: 3 },
+        { id: 'a3-3', order: 3, action: 'Emergency Treatment', detail: 'O2 high-flow, NS IV bolus, bronchodilators PRN. Epinephrine 0.3mg IM if bronchospasm, angioedema, or hypotension unresponsive to initial measures — do not delay for Grade 3 severity', icon: 'syringe', urgency: 'immediate', grade: 3 },
         { id: 'a3-4', order: 4, action: 'Do Not Restart', detail: protocol?.rateAdjustment.grade3Plus || 'Do not restart infusion. Assess for hospitalization.', icon: 'x-circle', urgency: 'immediate', grade: 3 },
       ];
 
     case 4:
       return [
         { id: 'a4-1', order: 1, action: 'STOP Infusion NOW', detail: 'Immediately discontinue infusion and clamp line', icon: 'alert-triangle', urgency: 'immediate', grade: 4 },
-        { id: 'a4-2', order: 2, action: 'Call Code/911', detail: 'Activate rapid response team or call 911', icon: 'phone-call', urgency: 'immediate', grade: 4 },
-        { id: 'a4-3', order: 3, action: 'Epinephrine 0.3mg IM', detail: 'Administer epinephrine 0.3-0.5mg IM (anterolateral thigh)', icon: 'syringe', urgency: 'immediate', grade: 4 },
-        { id: 'a4-4', order: 4, action: 'Assess ABCs', detail: 'Airway, Breathing, Circulation — position supine, elevate legs', icon: 'heart-pulse', urgency: 'immediate', grade: 4 },
-        { id: 'a4-5', order: 5, action: 'Transfer to ED', detail: 'Prepare for emergency department transfer', icon: 'ambulance', urgency: 'immediate', grade: 4 },
+        { id: 'a4-2', order: 2, action: 'Epinephrine 0.3mg IM', detail: 'Administer epinephrine 0.3–0.5mg IM into anterolateral thigh IMMEDIATELY — first-line treatment, do not delay', icon: 'syringe', urgency: 'immediate', grade: 4 },
+        { id: 'a4-3', order: 3, action: 'Call Code / 911', detail: 'Activate rapid response team or call 911 while epinephrine is being prepared/administered', icon: 'phone-call', urgency: 'immediate', grade: 4 },
+        { id: 'a4-4', order: 4, action: 'Assess ABCs', detail: 'Airway, Breathing, Circulation — position supine, elevate legs. O2 high-flow, IV access, NS bolus', icon: 'heart-pulse', urgency: 'immediate', grade: 4 },
+        { id: 'a4-5', order: 5, action: 'Transfer to ED', detail: 'Prepare for emergency department transfer. Repeat epinephrine q5–15 min PRN if no response', icon: 'ambulance', urgency: 'immediate', grade: 4 },
       ];
 
     case 5:
@@ -150,9 +150,9 @@ function buildFlowchart(
     );
     edges.push(
       { id: 'e-root-stop', source: 'root', target: 'stop', animated: true },
-      { id: 'e-stop-call', source: 'stop', target: 'call', animated: true },
-      { id: 'e-call-epi', source: 'call', target: 'epi', animated: true },
-      { id: 'e-epi-abcs', source: 'epi', target: 'abcs', animated: true },
+      { id: 'e-stop-epi', source: 'stop', target: 'epi', animated: true },
+      { id: 'e-epi-call', source: 'epi', target: 'call', animated: true },
+      { id: 'e-call-abcs', source: 'call', target: 'abcs', animated: true },
       { id: 'e-abcs-transfer', source: 'abcs', target: 'transfer', animated: true }
     );
   }

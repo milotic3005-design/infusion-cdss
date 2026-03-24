@@ -6,6 +6,7 @@ import { useTitrationStore } from '@/store/titration.store';
 import { useCountdown } from '@/hooks/useCountdown';
 import { useAudibleAlert } from '@/hooks/useAudibleAlert';
 import { formatDuration, roundClinical } from '@/lib/clinical-math';
+import { LBS_PER_KG } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
@@ -74,7 +75,7 @@ export function TitrationSchedulePanel() {
   const handleWeightApply = useCallback(() => {
     const raw = parseFloat(weightInput);
     if (isNaN(raw) || raw <= 0) return;
-    const kg = weightUnit === 'lbs' ? raw / 2.205 : raw;
+    const kg = weightUnit === 'lbs' ? raw / LBS_PER_KG : raw;
     if (kg < 1 || kg > 500) return;
     setPatientWeight(Math.round(kg * 10) / 10);
   }, [weightInput, weightUnit, setPatientWeight]);
@@ -194,7 +195,7 @@ export function TitrationSchedulePanel() {
                 <div>
                   <p className="text-sm text-[#4E6F4E]">
                     Patient weight: <strong>{patientWeightKg} kg</strong>
-                    <span className="text-[#5A7A5A] ml-1">({Math.round(patientWeightKg! * 2.205)} lbs)</span>
+                    <span className="text-[#5A7A5A] ml-1">({Math.round(patientWeightKg! * LBS_PER_KG)} lbs)</span>
                   </p>
                   <p className="text-xs text-[#5A7A5A] mt-0.5">
                     Rates below are calculated as mL/kg/hr × {patientWeightKg} kg
