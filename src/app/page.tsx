@@ -102,8 +102,8 @@ export default function HomePage() {
         </p>
       </div>
 
-      {/* Search Panel */}
-      <GlassPanel className="w-full max-w-2xl p-6 md:p-8" intensity="medium">
+      {/* Search Panel — z-10 so the suggestion dropdown floats above the tool cards below */}
+      <GlassPanel className="w-full max-w-2xl p-6 md:p-8 relative z-10" intensity="medium">
         {!selectedDrug && (
           <div className="relative">
             <DrugSearchInput

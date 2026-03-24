@@ -97,8 +97,17 @@ export function ProtocolSelector({ onSelect }: Props) {
     setLabelError(null);
     setSelectedLabel(null);
 
+    // With IN/BN filtering, drug.name is now clean (e.g. "rituximab" or "Rituxan").
+    // Try the drug name directly first, then parsed variants as fallbacks.
     const { ingredient, brand } = extractDrugNames(drug.name);
-    const attempts = [brand, ingredient, drug.name].filter(Boolean) as string[];
+    const seen = new Set<string>();
+    const attempts = [drug.name, ingredient, brand].filter((n): n is string => {
+      if (!n) return false;
+      const k = n.toLowerCase();
+      if (seen.has(k)) return false;
+      seen.add(k);
+      return true;
+    });
     let foundLabel: FdaLabel | null = null;
 
     for (const name of attempts) {
@@ -304,14 +313,25 @@ export function ProtocolSelector({ onSelect }: Props) {
 function parseRxNormResults(data: Record<string, unknown>): RxNormDrug[] {
   const drugGroup = data.drugGroup as { conceptGroup?: Array<{ tty: string; conceptProperties?: Array<{ rxcui: string; name: string }> }> } | undefined;
   if (!drugGroup?.conceptGroup) return [];
+
+  // Only include IN (ingredient) and BN (brand name) types.
+  // SCD/SBD produce verbose product strings like "10 ML rituximab 10 MG/ML Injection [Rituxan]"
+  // which are confusing for clinical users and break FDA label lookups.
+  const priorityOrder: Record<string, number> = { IN: 0, BN: 1 };
   const results: RxNormDrug[] = [];
   const seen = new Set<string>();
-  for (const group of drugGroup.conceptGroup) {
+
+  // Process IN first, then BN so ingredient entries sort to top
+  const sorted = [...drugGroup.conceptGroup].sort((a, b) => (priorityOrder[a.tty] ?? 99) - (priorityOrder[b.tty] ?? 99));
+
+  for (const group of sorted) {
     if (!group.conceptProperties) continue;
-    if (!['IN', 'BN', 'SCD', 'SBD'].includes(group.tty)) continue;
+    if (!['IN', 'BN'].includes(group.tty)) continue;
     for (const prop of group.conceptProperties) {
-      if (!seen.has(prop.rxcui)) {
-        seen.add(prop.rxcui);
+      // De-duplicate by lowercase name so "rituximab" and "Rituximab" don't both appear
+      const nameKey = prop.name.toLowerCase();
+      if (!seen.has(nameKey)) {
+        seen.add(nameKey);
         results.push({ rxcui: prop.rxcui, name: prop.name, tty: group.tty });
       }
     }
@@ -320,10 +340,11 @@ function parseRxNormResults(data: Record<string, unknown>): RxNormDrug[] {
 }
 
 function extractDrugNames(rxnormName: string) {
+  // With IN/BN-only filtering, rxnormName is now a clean name like "rituximab" or "Rituxan".
+  // Still handle bracket format as fallback for any edge cases.
   const brandMatch = rxnormName.match(/\[([^\]]+)\]/);
-  const brand = brandMatch ? brandMatch[1] : null;
-  const ingredientMatch = rxnormName.match(/(?:\d+\s+ML\s+)?([a-z][a-z-]+(?:\s+[a-z][a-z-]+)*)/i);
-  const ingredient = ingredientMatch ? ingredientMatch[1] : rxnormName;
+  const brand = brandMatch ? brandMatch[1] : (rxnormName.trim() || null);
+  const ingredient = rxnormName.replace(/\[.*?\]/g, '').trim() || rxnormName;
   return { ingredient, brand };
 }
 
