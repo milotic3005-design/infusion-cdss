@@ -361,11 +361,13 @@ function extractMixing(label: OpenFDALabel): {
   if (/5%\s*(?:dextrose|Dextrose\s+Injection)/i.test(dosingText)) diluents.push('D5W');
   if (/0\.45%/i.test(dosingText)) diluents.push('0.45% NaCl');
   if (/lactated\s+ringer/i.test(dosingText)) diluents.push('LR');
-  const diluent = diluents.length > 0 ? diluents.join(' or ') : 'NS or D5W (verify PI)';
+  const diluent = diluents.length > 0 ? diluents.join(' or ') : 'NS or D5W';
 
   // Concentration
-  let concRange = '⚠ See PI';
+  let concRange = 'Check PI';
   const concMatch = dosingText.match(
+    /concentration\s+(?:of|should\s+be|be|range(?:\s+of)?|between|from)\s+(\d+(?:\.\d+)?)\s*(?:to|[-–])\s*(\d+(?:\.\d+)?)\s*mg\/mL/i
+  ) || dosingText.match(
     /(?:to\s+)?(?:a\s+)?(?:final\s+)?concentration\s+of\s+(\d+(?:\.\d+)?)\s*(?:to|[-–])\s*(\d+(?:\.\d+)?)\s*mg\/mL/i
   ) || dosingText.match(/(\d+(?:\.\d+)?)\s*(?:to|[-–])\s*(\d+(?:\.\d+)?)\s*mg\/mL/i);
   if (concMatch) concRange = `${concMatch[1]}–${concMatch[2]} mg/mL`;
@@ -374,24 +376,32 @@ function extractMixing(label: OpenFDALabel): {
     if (singleConc) concRange = `${singleConc[1]} mg/mL`;
   }
 
-  // Filter
-  let filterInfo = 'No filter required (verify PI)';
+  // Filter — also detect pore size from "pore size of ≤1.2 micron" phrasing
+  let filterInfo = 'No in-line filter required';
   const filterMatch = dosingText.match(/(\d+(?:\.\d+)?)[- ]?(?:micron|micrometer|μm|mcm)[- ]?\s*filter/i)
-    || dosingText.match(/filter\s*(?:pore\s+size\s+)?(?:of\s+)?(\d+(?:\.\d+)?)\s*(?:micron|μm)/i);
+    || dosingText.match(/filter\s*(?:pore\s+size\s+)?(?:of\s+)?(?:≤|<=|<)?\s*(\d+(?:\.\d+)?)\s*(?:micron|μm)/i)
+    || dosingText.match(/pore\s+size\s+(?:of\s+)?(?:≤|<=|<)?\s*(\d+(?:\.\d+)?)\s*(?:micron|μm|micrometer)/i);
   if (filterMatch) {
     filterInfo = `${filterMatch[1]} micron in-line filter`;
   } else if (/in-line\s+filter|inline\s+filter/i.test(dosingText)) {
-    filterInfo = 'In-line filter required (see PI)';
+    filterInfo = 'In-line filter required';
   }
 
-  // Reconstitute step
-  let reconstitute = `Add diluent per PI · swirl gently`;
-  const reconMatch = dosingText.match(/reconstitut\w+\s+(?:with|using)\s+([^.]+?)(?:to\s+(?:yield|give|provide)\s+([^.]+?))?[.,]/i);
+  // Reconstitute step — allow words between "reconstitute" and "with/using" (e.g. "each REMICADE vial with")
+  let reconstitute = 'Add diluent to vial · swirl gently';
+  const reconMatch = dosingText.match(
+    /reconstitut\w+[^.]{0,60}?(?:with|using)\s+([^.]+?)(?:to\s+(?:yield|give|provide)\s+([^.]+?))?[.,]/i
+  );
   if (reconMatch) {
     reconstitute = reconMatch[1].replace(/\s+/g, ' ').trim().slice(0, 60);
+  } else {
+    // Fallback: detect SWFI volume
+    const swfiMatch = dosingText.match(/(\d+(?:\.\d+)?)\s*mL[^.]*(?:sterile\s+water|SWFI)/i)
+      || dosingText.match(/(?:sterile\s+water|SWFI)[^.]*?(\d+(?:\.\d+)?)\s*mL/i);
+    if (swfiMatch) reconstitute = `${swfiMatch[1]} mL SWFI · swirl gently`;
   }
 
-  const dilute = `${diluent} · Target: ${concRange}`;
+  const dilute = `${diluent} · ${concRange}`;
   const inspect = 'No particulates · Clear or expected color';
   const labelStore = 'Record BUD · temp · light protection';
 

@@ -25,11 +25,6 @@ export function buildImagePrompt(data: InfographicData): string {
   const releaseBullets = data.releaseItems.map(i => `  • ${i}`).join('\n');
   const rejectBullets = data.rejectItems.map(i => `  • ${i}`).join('\n');
 
-  // Incompatibilities
-  const incompats = data.incompatibilities.length > 0
-    ? data.incompatibilities.map(cap).join(' · ')
-    : 'Verify with current PI';
-
   return `Create a single-page portrait-orientation clinical pharmacy infographic (A4,
 210×297 mm, 300 DPI). Style: bold editorial medical poster — minimal text, maximum
 visual impact. Think pharmacy journal cover or hospital department wall poster.
@@ -85,10 +80,9 @@ Cards have green left border (4px). Arrow between each card must be visible and 
   Step 3 🔍 INSPECT → "${data.inspect}"
   Step 4 🏷️ LABEL & STORE → "${data.labelStore}"
 
-Below flowchart, 3 compact inline badges:
+Below flowchart, 2 compact inline badges:
   🔵 FILTER: "${data.filterInfo}"
   🟢 CONC RANGE: "${data.concRange}"
-  🔴 TOP INCOMPATIBILITIES (3 red pill tags only): ${incompats}
 
 ─── FOOTER (narrow dark navy strip) ───
 Right-aligned tiny gray text only (10px):
