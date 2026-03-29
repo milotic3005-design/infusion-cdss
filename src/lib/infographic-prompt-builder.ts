@@ -30,15 +30,15 @@ export function buildImagePrompt(data: InfographicData): string {
     ? data.incompatibilities.map(cap).join(' · ')
     : 'Verify with current PI';
 
-  return `Create a single-page portrait-orientation clinical pharmacy infographic (US Letter,
-8.5×11 in, 300 DPI). Style: bold editorial medical poster — minimal text, maximum
+  return `Create a single-page portrait-orientation clinical pharmacy infographic (A4,
+210×297 mm, 300 DPI). Style: bold editorial medical poster — minimal text, maximum
 visual impact. Think pharmacy journal cover or hospital department wall poster.
 NOT a table-heavy document. Key values must be large, bold, and immediately readable.
 Use icons and color blocks to carry meaning. Generous whitespace throughout.
 Absolutely no paragraphs or sentence-length text anywhere on the page.
 
-TYPEFACE: Bold geometric sans-serif (Syne or Bebas style) for all large values and
-headers. Clean humanist sans (DM Sans style) for short supporting labels only.
+TYPEFACE: Inter Bold or Inter ExtraBold for all large values and headers.
+Inter Regular or Inter Medium for short supporting labels only.
 
 ─── HEADER (full-width dark navy #0F172A bar) ───
 Left: small uppercase muted label "${data.drugClass.toUpperCase()}" with teal accent line.
@@ -99,7 +99,7 @@ STRICT COLOR PALETTE:
 #22C55E accept · #EF4444 reject · #DCFCE7 green bg · #FEE2E2 red bg
 #F59E0B conditional · #1A1A2E body · #64748B muted · #E2E8F0 border
 
-OUTPUT: Portrait · US Letter · 300 DPI · white bg · no watermarks · no bleed.
+OUTPUT: Portrait · A4 · 300 DPI · white bg · no watermarks · no bleed.
 CRITICAL REMINDER: MINIMAL TEXT. Bold values, icons, and color carry the message.
 Whitespace is intentional. No paragraphs. No sentences. No tables.`;
 }
