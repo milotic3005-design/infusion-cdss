@@ -125,51 +125,87 @@ function extractBud(label: OpenFDALabel): BudEntry[] {
 
   const found: Array<{ condition: string; duration: string; note: string }> = [];
 
-  // Patterns: "stable for X hours/days at [condition]" or "[condition] stability: X hours"
-  const patterns = [
-    // "stable for 24 hours at room temperature"
-    /stable\s+for\s+(\d+(?:\.\d+)?)\s*(hour|hr|day|week)s?[^.]*?(?:at|when|if|under)\s+(room\s+temperature|CRT|25|20[–-]25|refrigerat|2[–-]8|frozen|−20|−25)/gi,
-    // "24 hours at room temperature" (implied stability)
-    /(\d+(?:\.\d+)?)\s*(hour|hr|day|week)s?\s+(?:at|when)\s+(room\s+temperature|CRT|refrigerat|2[–-]8|frozen)/gi,
-    // "refrigerated for up to 7 days"
-    /(?:refrigerat\w+)\s+(?:for\s+)?(?:up\s+to\s+)?(\d+(?:\.\d+)?)\s*(hour|hr|day|week)s?/gi,
-    // "room temperature stability: 24 hours" or "RT stability 24h"
-    /(?:room\s+temp|RT)\s+stability[:\s]+(?:up\s+to\s+)?(\d+(?:\.\d+)?)\s*(hour|hr|day|week)s?/gi,
-  ];
+  type RawMatch = { num: string; unit: string; cond: string };
+  const candidates: RawMatch[] = [];
 
-  for (const pattern of patterns) {
+  // A: "stable for N unit [at/when/under COND]"
+  {
+    const re = /stable\s+for\s+(\d+(?:\.\d+)?)\s*(hour|hr|day|week)s?(?:[^.]*?(?:at|when|if|under)\s+(room\s+temperature|CRT|20[–\-]25|25\s*°|refrigerat|2[–\-]8|frozen|−20|−25))?/gi;
     let m: RegExpExecArray | null;
-    while ((m = pattern.exec(text)) !== null) {
-      const rawNum = m[1];
-      const unit = m[2];
-      const condRaw = m[3] ?? '';
+    while ((m = re.exec(text)) !== null) candidates.push({ num: m[1], unit: m[2], cond: m[3] ?? '' });
+  }
 
-      const duration = `${rawNum} ${unit}${parseFloat(rawNum) !== 1 ? 's' : ''}`;
-      let condition: string;
-      let note: string;
+  // B: "stored at COND for [up to] N unit"
+  {
+    const re = /stored\s+at\s+(room\s+temperature|CRT|controlled\s+room\s+temperature|refrigerat\w+|2[–\-]8\s*°?\s*C?)\s+for\s+(?:up\s+to\s+)?(\d+(?:\.\d+)?)\s*(hour|hr|day|week)s?/gi;
+    let m: RegExpExecArray | null;
+    while ((m = re.exec(text)) !== null) candidates.push({ num: m[2], unit: m[3], cond: m[1] });
+  }
 
-      if (/room\s+temp|CRT|20|25/i.test(condRaw)) {
-        condition = 'Final Admixture — Room Temp';
-        note = '20–25°C · Do not freeze';
-      } else if (/refrigerat|2[–-]8/i.test(condRaw)) {
-        condition = 'Final Admixture — Refrigerated';
-        note = '2–8°C · Do not freeze';
-      } else if (/frozen|−20|−25/i.test(condRaw)) {
-        condition = 'Frozen';
-        note = '−20°C · Thaw before use';
-      } else {
-        condition = 'Final Admixture';
-        note = 'See PI for conditions';
-      }
+  // C: "for [up to] N unit at COND"
+  {
+    const re = /for\s+(?:up\s+to\s+)?(\d+(?:\.\d+)?)\s*(hour|hr|day|week)s?\s+(?:at|when)\s+(room\s+temperature|CRT|refrigerat|2[–\-]8)/gi;
+    let m: RegExpExecArray | null;
+    while ((m = re.exec(text)) !== null) candidates.push({ num: m[1], unit: m[2], cond: m[3] });
+  }
 
-      // Deduplicate by condition
-      if (!found.some(f => f.condition === condition)) {
-        found.push({ condition, duration, note });
-      }
+  // D: verb…within N unit [of preparation] — e.g. "Begin the infusion within 3 hours of preparation"
+  {
+    const re = /(?:use|administer|infuse|infusion|begin|start|complete|discard)\b[^,]{0,40}?within\s+(\d+(?:\.\d+)?)\s*(hour|hr|day|week)s?(?:[^.]*?(room\s+temperature|CRT|refrigerat|2[–\-]8))?/gi;
+    let m: RegExpExecArray | null;
+    while ((m = re.exec(text)) !== null)
+      candidates.push({ num: m[1], unit: m[2], cond: m[3] ?? 'room temperature' });
+  }
+
+  // E: "within N unit of preparation/reconstitution" (unambiguous BUD context)
+  {
+    const re = /within\s+(\d+(?:\.\d+)?)\s*(hour|hr|day|week)s?\s+of\s+(?:preparation|reconstitution|mixing|dilution|compounding)/gi;
+    let m: RegExpExecArray | null;
+    while ((m = re.exec(text)) !== null) candidates.push({ num: m[1], unit: m[2], cond: 'room temperature' });
+  }
+
+  // F: "refrigerated for [up to] N unit" — admixture-specific (cap at 45 days to exclude vial shelf life)
+  {
+    const re = /(?:refrigerat\w+)\s+(?:for\s+)?(?:up\s+to\s+)?(\d+(?:\.\d+)?)\s*(hour|hr|day|week)s?/gi;
+    let m: RegExpExecArray | null;
+    while ((m = re.exec(text)) !== null) {
+      const hrs = toHours(`${m[1]} ${m[2]}`);
+      if (hrs <= 1080) candidates.push({ num: m[1], unit: m[2], cond: 'refrigerated' });
     }
   }
 
-  // If nothing found, add a placeholder
+  // G: "at room temperature [for] N unit"
+  {
+    const re = /at\s+room\s+temperature[^.]{0,60}?(?:for\s+)?(?:up\s+to\s+)?(\d+(?:\.\d+)?)\s*(hour|hr|day|week)s?/gi;
+    let m: RegExpExecArray | null;
+    while ((m = re.exec(text)) !== null) candidates.push({ num: m[1], unit: m[2], cond: 'room temperature' });
+  }
+
+  for (const { num, unit, cond } of candidates) {
+    const durNum = parseFloat(num);
+    const rawUnit = unit.toLowerCase().startsWith('hr') ? 'hour' : unit.toLowerCase().replace(/s$/, '');
+    const duration = `${num} ${rawUnit}${durNum !== 1 ? 's' : ''}`;
+
+    let condition: string;
+    let note: string;
+
+    if (/frozen|−20|−25/i.test(cond)) {
+      condition = 'Frozen';
+      note = '−20°C · Thaw before use';
+    } else if (/refrigerat|2[–\-]8/i.test(cond)) {
+      condition = 'Final Admixture — Refrigerated';
+      note = '2–8°C · Do not freeze';
+    } else {
+      condition = 'Final Admixture — Room Temp';
+      note = '20–25°C · Do not freeze';
+    }
+
+    if (!found.some(f => f.condition === condition)) {
+      found.push({ condition, duration, note });
+    }
+  }
+
+  // If nothing found, add placeholders
   if (found.length === 0) {
     found.push({ condition: 'Final Admixture — Room Temp', duration: '⚠ See PI', note: 'Verify with current PI' });
     found.push({ condition: 'Final Admixture — Refrigerated', duration: '⚠ See PI', note: 'Verify with current PI' });
@@ -224,12 +260,28 @@ function extractStorage(label: OpenFDALabel): StorageData {
     intactVial += ' · Protect from light';
   }
 
-  // After mixing
+  // After mixing temperature — check if admixture is stored refrigerated or at room temp
   let afterMixing = '⚠ Verify with PI';
-  if (/refrigerat/i.test(dosingText)) {
-    afterMixing = '2–8°C after mixing';
-  } else if (/room\s+temp/i.test(dosingText) || /20.{0,10}25\s*°\s*C/i.test(dosingText)) {
-    afterMixing = '20–25°C if used promptly';
+  const admixRefrigerated =
+    /(?:prepared|reconstituted|diluted|admixture|solution)[^.]{0,100}(?:refrigerat|2[–\-]8)/i.test(dosingText) ||
+    /refrigerat[^.]{0,100}(?:prepared|reconstituted|diluted|admixture)/i.test(dosingText) ||
+    /(?:may\s+be\s+refrigerat|store\s+(?:the\s+)?(?:prepared|diluted|reconstituted))[^.]*refrigerat/i.test(dosingText);
+  const admixRoomTemp =
+    /(?:prepared|reconstituted|diluted|admixture)[^.]{0,100}(?:room\s+temp|CRT|20[–\-]25)/i.test(dosingText) ||
+    /(?:room\s+temp|CRT|20[–\-]25)[^.]{0,100}(?:prepared|reconstituted|diluted|admixture)/i.test(dosingText);
+  const withinHours = /within\s+\d+\s*(?:hour|hr)s?/i.test(dosingText);
+
+  if (admixRefrigerated) {
+    afterMixing = 'Refrigerated · 2–8°C';
+  } else if (admixRoomTemp) {
+    afterMixing = 'Room temperature · 20–25°C';
+  } else if (withinHours && !/refrigerat/i.test(dosingText)) {
+    // "use within X hours" with no refrigeration mention → room temp
+    afterMixing = 'Room temperature · 20–25°C';
+  } else if (/refrigerat/i.test(dosingText)) {
+    afterMixing = 'Refrigerated · 2–8°C';
+  } else if (/room\s+temp|CRT|20[–\-]25/i.test(dosingText)) {
+    afterMixing = 'Room temperature · 20–25°C';
   }
 
   // Container compatibility

@@ -54,12 +54,6 @@ export function buildInfographicHtml(data: InfographicData): string {
 
   const budCards = data.budEntries.map(e => budCard(e, e.widthPct)).join('');
 
-  const incompatPills = data.incompatibilities.length > 0
-    ? data.incompatibilities.map(d =>
-        `<span style="background:#FEE2E2;color:#991B1B;font-size:11px;font-weight:600;padding:4px 10px;border-radius:20px;">${capitalize(d)}</span>`
-      ).join(' ')
-    : `<span style="background:#FEE2E2;color:#991B1B;font-size:11px;padding:4px 10px;border-radius:20px;">⚠ Verify with PI</span>`;
-
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -168,12 +162,11 @@ export function buildInfographicHtml(data: InfographicData): string {
     <div style="display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px;margin-top:16px;padding-top:14px;border-top:1px solid #B2DFC7;">
       ${badge('#DBEAFE', '#1D4ED8', '🔵 FILTER: ' + data.filterInfo)}
       ${badge('#DCFCE7', '#166534', '🟢 CONC: ' + data.concRange)}
-      <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
-        <span style="font-size:11px;font-weight:700;color:#991B1B;">🔴 TOP INCOMPATIBILITIES:</span>
-        ${incompatPills}
-      </div>
     </div>
   </div>
+
+  <!-- ── NOTES SPACE ───────────────────────────────────────────────────── -->
+  <div style="height:0.7in;background:white;"></div>
 
   <!-- ── SECTION 6: FOOTER ─────────────────────────────────────────────── -->
   <div style="background:#0F172A;padding:10px 24px;text-align:right;">
