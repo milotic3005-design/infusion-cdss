@@ -11,7 +11,7 @@ import { useDrugSearch } from '@/hooks/useDrugSearch';
 import { useDrugProfile } from '@/hooks/useDrugProfile';
 import { useSessionStore } from '@/store/session.store';
 import Link from 'next/link';
-import { ArrowRight, ShieldCheck, Syringe, Timer } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Syringe, Timer, FileText } from 'lucide-react';
 import type { RxNormConcept } from '@/types/drug.types';
 
 export default function HomePage() {
@@ -157,6 +157,15 @@ export default function HomePage() {
               <h3 className="font-bold text-[#4E6F4E]">Titration Scheduler</h3>
             </div>
             <p className="text-sm text-[#5A7A5A]">Step-wise infusion rate titration with active timers</p>
+          </GlassPanel>
+        </Link>
+        <Link href="/infographic" className="sm:col-span-2">
+          <GlassPanel className="p-5 cursor-pointer hover:shadow-md transition-shadow" intensity="light">
+            <div className="flex items-center gap-3 mb-2">
+              <FileText size={20} className="text-[#4E6F4E]" />
+              <h3 className="font-bold text-[#4E6F4E]">Drug Reference Infographic</h3>
+            </div>
+            <p className="text-sm text-[#5A7A5A]">Generate a ready-to-paste AI image prompt for any IV drug reference infographic</p>
           </GlassPanel>
         </Link>
       </div>
